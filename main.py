@@ -1,6 +1,7 @@
 import sys
 import os
 import time
+import paramiko
 from functools import partial
 
 from PySide6 import QtCore, QtWidgets
@@ -84,27 +85,52 @@ def get_ip():
     pass
 
 
+def connect(ip_address, username, password):
+    global ssh_client
+    ssh_client = paramiko.SSHClient()
+    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    try:
+        ssh_client.connect(hostname=ip_address, username=username, password=password)
+        remote_connection = ssh_client.invoke_shell()
+        connected()
+    except:
+        not_connected()
+
+
 def not_connected():
-    window.connectionStatus.setText("en attente de connection ...")
+    window.connectionStatus.setText("échec de la connection")
 
 
 def connected():
-    pass
+    window.connectionStatus.setText(f"connecté à : {ip_address}")
 
 
 def launch_color():
-    pass
+    quit_hyperion()
+    chaine = f"echo {window.valRed.value()}l>/home/pi/coucou.txt"
+    stdin,stdout,stderr=ssh_client.exec_command(chaine)
+    chaine = f"echo {window.valGreen.value()}l>>/home/pi/coucou.txt"
+    stdin,stdout,stderr=ssh_client.exec_command(chaine)
+    chaine = f"echo {window.valBlue.value()}l>>/home/pi/coucou.txt"
+    stdin,stdout,stderr=ssh_client.exec_command(chaine)
+    stdin,stdout,stderr=ssh_client.exec_command("python3 /home/pi/hue.py")
 
 
 def launch_hyperion():
-    pass
+    stdin,stdout,stderr = ssh_client.exec_command("/usr/bin/hyperiond")
 
 
 def quit_hyperion():
-    pass
+    stdin,stdout,stderr = ssh_client.exec_command("killall hyperiond")
 
 
 if __name__ == "__main__":
+
+    global ip_address
+    ip_address = "192.168.1.53"
+    username = "pi"
+    password = "terrasnet"
+
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
     window = loader.load("fen.ui", None)
@@ -140,6 +166,5 @@ if __name__ == "__main__":
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
-    not_connected()
-
+    connect(ip_address, username, password)
     app.exec()
