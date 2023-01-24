@@ -10,7 +10,38 @@ from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PySide6.QtUiTools import QUiLoader
+import threading
 
+
+class ConnectionAttempt(threading.Thread):
+    def __init__(self, ip_address, username, password):
+        threading.Thread.__init__(self)
+        self.isConnected = False
+        self.ip_address = ip_address
+        self.username = username
+        self.password = password
+
+    def run(self):
+        while not self.isConnected:
+            if not connect(ip_address, username, password):
+                time.sleep(5)
+            else:
+                self.isConnected = True
+
+# class ConnectionWait(threading.Thread):
+#     def __init__(self, ip_address, username, password):
+#         threading.Thread.__init__(self)
+#         self.isConnected = False
+#         self.ip_address = ip_address
+#         self.username = username
+#         self.password = password
+#
+#     def run(self):
+#         while not self.isConnected:
+#             if not connect(ip_address, username, password):
+#                 time.sleep(5)
+#             else:
+#                 self.isConnected = True
 
 def get_middle_grey():
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
@@ -93,8 +124,10 @@ def connect(ip_address, username, password):
         ssh_client.connect(hostname=ip_address, username=username, password=password)
         remote_connection = ssh_client.invoke_shell()
         connected()
+        return True
     except:
         not_connected()
+        return False
 
 
 def not_connected():
@@ -131,6 +164,9 @@ if __name__ == "__main__":
     username = "pi"
     password = "terrasnet"
 
+    connectionAttempt = ConnectionAttempt(ip_address, username, password)
+    connectionAttempt.start()
+
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
     window = loader.load("fen.ui", None)
@@ -166,5 +202,4 @@ if __name__ == "__main__":
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
-    connect(ip_address, username, password)
     app.exec()
