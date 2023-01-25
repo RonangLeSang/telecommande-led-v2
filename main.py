@@ -2,7 +2,6 @@ import sys
 import os
 import time
 import paramiko
-from functools import partial
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
@@ -23,10 +22,14 @@ class ConnectionAttempt(threading.Thread):
 
     def run(self):
         while not self.isConnected:
-            if not connect(ip_address, username, password):
+            connectionWait = ConnectionWait()
+            connectionWait.start()
+            if not connect(ip_address, username, password, connectionWait):
                 time.sleep(5)
             else:
                 self.isConnected = True
+            connectionWait.stop = True
+            connectionWait.join()
 
 class ConnectionWait(threading.Thread):
     def __init__(self):
@@ -113,16 +116,20 @@ def get_rgb():
            f"{window.valBlue.value()}\n"
 
 
-def connect(ip_address, username, password):
+def connect(ip_address, username, password, connectionWait):
     global ssh_client
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     try:
         ssh_client.connect(hostname=ip_address, username=username, password=password)
         remote_connection = ssh_client.invoke_shell()
+        connectionWait.stop = True
+        connectionWait.join()
         connected()
         return True
     except:
+        connectionWait.stop = True
+        connectionWait.join()
         not_connected()
         return False
 
@@ -162,16 +169,19 @@ def quit_hyperion():
 
 if __name__ == "__main__":
 
+    # déclaration des variables
+
     global ip_address
     ip_address = "192.168.1.53"
     username = "pi"
     password = "terrasnet"
 
+    # démarrage des threads
+
     connectionAttempt = ConnectionAttempt(ip_address, username, password)
     connectionAttempt.start()
 
-    connectionWait = ConnectionWait()
-    connectionWait.start()
+    # fenêtre
 
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
@@ -210,7 +220,7 @@ if __name__ == "__main__":
 
     app.exec()
 
-    connectionWait.stop = True
-    connectionWait.join()
+    # arrêt du programme
+
     connectionAttempt.isConnected = True
     connectionAttempt.join()
