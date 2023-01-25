@@ -28,20 +28,21 @@ class ConnectionAttempt(threading.Thread):
             else:
                 self.isConnected = True
 
-# class ConnectionWait(threading.Thread):
-#     def __init__(self, ip_address, username, password):
-#         threading.Thread.__init__(self)
-#         self.isConnected = False
-#         self.ip_address = ip_address
-#         self.username = username
-#         self.password = password
-#
-#     def run(self):
-#         while not self.isConnected:
-#             if not connect(ip_address, username, password):
-#                 time.sleep(5)
-#             else:
-#                 self.isConnected = True
+class ConnectionWait(threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.stop = False
+
+    def run(self):
+        time.sleep(2)
+        i = 0
+        while not self.stop:
+            wait_connection(i)
+            time.sleep(0.2)
+            if i == 3:
+                i = 0
+            else:
+                i += 1
 
 def get_middle_grey():
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
@@ -112,10 +113,6 @@ def get_rgb():
            f"{window.valBlue.value()}\n"
 
 
-def get_ip():
-    pass
-
-
 def connect(ip_address, username, password):
     global ssh_client
     ssh_client = paramiko.SSHClient()
@@ -136,6 +133,12 @@ def not_connected():
 
 def connected():
     window.connectionStatus.setText(f"connecté à : {ip_address}")
+
+
+def wait_connection(i):
+    affichage = ["En attente de connexion", "En attente de connexion.", "En attente de connexion..",
+                 "En attente de connexion..."]
+    window.connectionStatus.setText(affichage[i])
 
 
 def launch_color():
@@ -166,6 +169,9 @@ if __name__ == "__main__":
 
     connectionAttempt = ConnectionAttempt(ip_address, username, password)
     connectionAttempt.start()
+
+    connectionWait = ConnectionWait()
+    connectionWait.start()
 
     loader = QUiLoader()
     app = QtWidgets.QApplication(sys.argv)
@@ -203,3 +209,8 @@ if __name__ == "__main__":
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
     app.exec()
+
+    connectionWait.stop = True
+    connectionWait.join()
+    connectionAttempt.isConnected = True
+    connectionAttempt.join()

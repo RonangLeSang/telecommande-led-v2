@@ -162,7 +162,7 @@ border-radius: 20px;</string>
 color: white</string>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string>En attente de connexion</string>
         </property>
        </widget>
       </item>
