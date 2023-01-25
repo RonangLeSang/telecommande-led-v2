@@ -49,7 +49,16 @@ class ConnectionWait(threading.Thread):
 
 
 def rgb_to_hex(r, g, b):
-  return ('{:X}{:X}{:X}').format(r, g, b)
+    return "#{:02x}{:02x}{:02x}".format(r,g,b)
+
+
+def hex_to_rgb(hex):
+    hex = hex[1:]
+    rgb = []
+    for i in (0, 2, 4):
+        decimal = int(hex[i:i+2], 16)
+        rgb.append(decimal)
+    return tuple(rgb)
 
 
 def get_middle_grey():
@@ -124,6 +133,13 @@ def change_bg_spinbox():
     window.sliderRed.setValue(window.valRed.value())
     window.sliderGreen.setValue(window.valGreen.value())
     window.sliderBlue.setValue(window.valBlue.value())
+
+
+def change_bg_hex():
+    hex = hex_to_rgb(window.editHexa.text())
+    window.sliderRed.setValue(hex[0])
+    window.sliderGreen.setValue(hex[1])
+    window.sliderBlue.setValue(hex[2])
 
 
 def get_rgb():
@@ -222,6 +238,7 @@ if __name__ == "__main__":
     window.valRed.valueChanged.connect(change_bg_spinbox)
     window.valGreen.valueChanged.connect(change_bg_spinbox)
     window.valBlue.valueChanged.connect(change_bg_spinbox)
+    window.editHexa.textChanged.connect(change_bg_hex)
 
     window.labelRed.setStyleSheet(
         f"color: rgb(255,255,255)")
