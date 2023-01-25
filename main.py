@@ -47,6 +47,11 @@ class ConnectionWait(threading.Thread):
             else:
                 i += 1
 
+
+def rgb_to_hex(r, g, b):
+  return ('{:X}{:X}{:X}').format(r, g, b)
+
+
 def get_middle_grey():
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
 
@@ -64,6 +69,16 @@ def label_color(color: int):
     window.labelGreen.setStyleSheet(
         f"color: rgb({color},{color},{color})")
     window.labelBlue.setStyleSheet(
+        f"color: rgb({color},{color},{color})")
+    window.connectionStatus.setStyleSheet(
+        f"color: rgb({color},{color},{color})")
+    window.labelHexa.setStyleSheet(
+        f"color: rgb({color},{color},{color})")
+    window.labelPantone.setStyleSheet(
+        f"color: rgb({color},{color},{color})")
+    window.editHexa.setStyleSheet(
+        f"color: rgb({color},{color},{color})")
+    window.editPantone.setStyleSheet(
         f"color: rgb({color},{color},{color})")
 
 
@@ -101,6 +116,7 @@ def change_bg_sliders():
     window.valRed.setValue(window.sliderRed.value())
     window.valGreen.setValue(window.sliderGreen.value())
     window.valBlue.setValue(window.sliderBlue.value())
+    window.editHexa.setText(rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()))
 
 
 def change_bg_spinbox():
@@ -143,7 +159,7 @@ def connected():
 
 
 def wait_connection(i):
-    affichage = ["En attente de connexion", "En attente de connexion.", "En attente de connexion..",
+    affichage = ["En attente de connexion   ", "En attente de connexion.  ", "En attente de connexion.. ",
                  "En attente de connexion..."]
     window.connectionStatus.setText(affichage[i])
 
