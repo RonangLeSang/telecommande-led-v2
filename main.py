@@ -136,10 +136,11 @@ def change_bg_spinbox():
 
 
 def change_bg_hex():
-    hex = hex_to_rgb(window.editHexa.text())
-    window.sliderRed.setValue(hex[0])
-    window.sliderGreen.setValue(hex[1])
-    window.sliderBlue.setValue(hex[2])
+    if len(window.editHexa.text()) == 7:
+        hex = hex_to_rgb(window.editHexa.text())
+        window.sliderRed.setValue(hex[0])
+        window.sliderGreen.setValue(hex[1])
+        window.sliderBlue.setValue(hex[2])
 
 
 def get_rgb():
