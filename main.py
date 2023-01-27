@@ -77,6 +77,15 @@ def closest_pantone(rgb):
     return rep
 
 
+def pantone_to_rgb(code_pantone):
+    with open("results.json", "r") as file:
+        pantone = json.load(file)
+        if code_pantone in pantone.keys():
+            return pantone[code_pantone]
+        else:
+            return tuple(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
+
+
 def get_middle_grey():
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
 
@@ -161,7 +170,10 @@ def change_bg_hex():
 
 
 def change_bg_pantone():
-    pass
+    rgb = pantone_to_rgb(window.editPantone.text())
+    window.sliderRed.setValue(rgb[0])
+    window.sliderGreen.setValue(rgb[1])
+    window.sliderBlue.setValue(rgb[2])
 
 
 def get_rgb():
