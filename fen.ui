@@ -69,6 +69,12 @@ border-radius: 20px;</string>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QLabel" name="labelRed">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>22</height>
+             </size>
+            </property>
             <property name="text">
              <string>Rouge</string>
             </property>
@@ -94,8 +100,14 @@ border-radius: 20px;</string>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QLabel" name="labelGreen">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Vert   </string>
+             <string>Vert</string>
             </property>
            </widget>
           </item>
@@ -119,8 +131,14 @@ border-radius: 20px;</string>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QLabel" name="labelBlue">
+            <property name="minimumSize">
+             <size>
+              <width>50</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="text">
-             <string>Bleu   </string>
+             <string>Bleu</string>
             </property>
            </widget>
           </item>
@@ -213,6 +231,9 @@ border-radius: 20px;</string>
          <widget class="QLineEdit" name="editPantone">
           <property name="styleSheet">
            <string notr="true">color: white;</string>
+          </property>
+          <property name="text">
+           <string>Black 6 C</string>
           </property>
          </widget>
         </item>
