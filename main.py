@@ -11,6 +11,7 @@ from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PySide6.QtUiTools import QUiLoader
+from scipy.spatial import distance
 
 
 class ConnectionAttempt(threading.Thread):
@@ -65,8 +66,17 @@ def hex_to_rgb(hex):
 def closest_pantone(rgb):
     with open("results.json", "r") as file:
         pantone = json.load(file)
-        for color_pantone in pantone.keys():
-            1
+        min_dist = 2555555
+        pantoneKeys = pantone.keys()
+        rep = min(pantoneKeys)
+        print(rep)
+        for color_pantone in pantoneKeys:
+            dist = distance.euclidean(tuple(pantone[color_pantone]), rgb)
+            print(rep)
+            if dist < min_dist:
+                min_dist = dist
+                rep = color_pantone
+    return rep
 
 
 def get_middle_grey():
