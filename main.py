@@ -3,8 +3,7 @@ import os
 import time
 import paramiko
 import threading
-
-#https://encycolorpedia.fr/006f71
+import json
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
@@ -61,6 +60,13 @@ def hex_to_rgb(hex):
         decimal = int(hex[i:i+2], 16)
         rgb.append(decimal)
     return tuple(rgb)
+
+
+def closest_pantone(rgb):
+    with open("results.json", "r") as file:
+        pantone = json.load(file)
+        for color_pantone in pantone.keys():
+            1
 
 
 def get_middle_grey():
