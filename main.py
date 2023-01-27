@@ -2,6 +2,9 @@ import sys
 import os
 import time
 import paramiko
+import threading
+
+#https://encycolorpedia.fr/006f71
 
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
@@ -9,7 +12,6 @@ from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PySide6.QtUiTools import QUiLoader
-import threading
 
 
 class ConnectionAttempt(threading.Thread):
@@ -143,6 +145,10 @@ def change_bg_hex():
         window.sliderBlue.setValue(hex[2])
 
 
+def change_bg_pantone():
+    pass
+
+
 def get_rgb():
     return f"{window.valRed.value()}\n" \
            f"{window.valGreen.value()}\n" \
@@ -240,6 +246,7 @@ if __name__ == "__main__":
     window.valGreen.valueChanged.connect(change_bg_spinbox)
     window.valBlue.valueChanged.connect(change_bg_spinbox)
     window.editHexa.textChanged.connect(change_bg_hex)
+    window.editPantone.textChanged.connect(change_bg_pantone)
 
     window.labelRed.setStyleSheet(
         f"color: rgb(255,255,255)")
