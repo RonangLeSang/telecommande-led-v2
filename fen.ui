@@ -203,14 +203,15 @@ border-radius: 20px;</string>
            <string notr="true">color: white</string>
           </property>
           <property name="text">
-           <string>code hexa</string>
+           <string>code hexa :</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="editHexa">
           <property name="styleSheet">
-           <string notr="true">color: white;</string>
+           <string notr="true">color: white;
+border: 0px;</string>
           </property>
           <property name="text">
            <string>#000000</string>
@@ -223,14 +224,15 @@ border-radius: 20px;</string>
            <string notr="true">color: white</string>
           </property>
           <property name="text">
-           <string>code pantone</string>
+           <string>code pantone :</string>
           </property>
          </widget>
         </item>
         <item>
          <widget class="QLineEdit" name="editPantone">
           <property name="styleSheet">
-           <string notr="true">color: white;</string>
+           <string notr="true">color: white;
+border: 0px;</string>
           </property>
           <property name="text">
            <string>Black 6 C</string>

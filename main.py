@@ -80,10 +80,10 @@ def closest_pantone(rgb):
 def pantone_to_rgb(code_pantone):
     with open("results.json", "r") as file:
         pantone = json.load(file)
-        if code_pantone in pantone.keys():
-            return pantone[code_pantone]
-        else:
-            return tuple(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
+    if code_pantone in pantone.keys():
+        return pantone[code_pantone]
+    else:
+        return tuple([window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()])
 
 
 def get_middle_grey():
@@ -111,9 +111,11 @@ def label_color(color: int):
     window.labelPantone.setStyleSheet(
         f"color: rgb({color},{color},{color})")
     window.editHexa.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
+        f"color: rgb({color},{color},{color});\n"
+        f"border: 0px;")
     window.editPantone.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
+        f"color: rgb({color},{color},{color});\n"
+        f"border: 0px;")
 
 
 def set_button_color(middleGrey: int):
