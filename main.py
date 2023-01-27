@@ -69,10 +69,8 @@ def closest_pantone(rgb):
         min_dist = 2555555
         pantoneKeys = pantone.keys()
         rep = min(pantoneKeys)
-        print(rep)
         for color_pantone in pantoneKeys:
             dist = distance.euclidean(tuple(pantone[color_pantone]), rgb)
-            print(rep)
             if dist < min_dist:
                 min_dist = dist
                 rep = color_pantone
@@ -144,6 +142,7 @@ def change_bg_sliders():
     window.valGreen.setValue(window.sliderGreen.value())
     window.valBlue.setValue(window.sliderBlue.value())
     window.editHexa.setText(rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()))
+    window.editPantone.setText(closest_pantone((window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())))
 
 
 def change_bg_spinbox():
