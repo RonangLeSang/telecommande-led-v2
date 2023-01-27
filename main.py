@@ -273,7 +273,7 @@ if __name__ == "__main__":
     window.valGreen.valueChanged.connect(change_bg_spinbox)
     window.valBlue.valueChanged.connect(change_bg_spinbox)
     window.editHexa.textChanged.connect(change_bg_hex)
-    window.editPantone.textChanged.connect(change_bg_pantone)
+    window.editPantone.returnPressed.connect(change_bg_pantone)
 
     window.labelRed.setStyleSheet(
         f"color: rgb(255,255,255)")
