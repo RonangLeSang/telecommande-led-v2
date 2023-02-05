@@ -182,6 +182,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -200,6 +204,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -220,6 +228,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -238,6 +250,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -258,6 +274,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -276,6 +296,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -296,6 +320,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -314,6 +342,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -334,6 +366,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -352,6 +388,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -372,6 +412,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -390,6 +434,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -410,6 +458,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -428,6 +480,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -448,6 +504,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -466,6 +526,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -486,6 +550,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -504,6 +572,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -524,6 +596,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -542,6 +618,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -562,6 +642,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -581,6 +665,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -599,6 +687,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -657,6 +749,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -676,6 +772,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -694,6 +794,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -733,6 +837,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -751,6 +859,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -771,6 +883,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -790,6 +906,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -808,6 +928,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -847,6 +971,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -865,6 +993,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -885,6 +1017,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -903,6 +1039,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -923,6 +1063,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -941,6 +1085,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -961,6 +1109,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -979,6 +1131,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -999,6 +1155,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1017,6 +1177,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1037,6 +1201,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1055,6 +1223,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1075,6 +1247,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1093,6 +1269,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1113,6 +1293,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1131,6 +1315,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1151,6 +1339,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1169,6 +1361,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1189,6 +1385,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1207,6 +1407,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1227,6 +1431,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1245,6 +1453,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1265,6 +1477,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1283,6 +1499,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1303,6 +1523,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1321,6 +1545,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1341,6 +1569,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1359,6 +1591,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1379,6 +1615,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1397,6 +1637,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1417,6 +1661,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1435,6 +1683,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1455,6 +1707,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1473,6 +1729,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1493,6 +1753,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1511,6 +1775,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1531,6 +1799,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1549,6 +1821,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1569,6 +1845,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1587,6 +1867,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1607,6 +1891,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1625,6 +1913,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1645,6 +1937,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1663,6 +1959,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1683,6 +1983,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1701,6 +2005,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1721,6 +2029,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1739,6 +2051,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1759,6 +2075,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1777,6 +2097,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1797,6 +2121,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1815,6 +2143,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1835,6 +2167,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1853,6 +2189,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1873,6 +2213,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1891,6 +2235,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1911,6 +2259,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1929,6 +2281,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1949,6 +2305,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -1967,6 +2327,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1987,6 +2351,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2005,6 +2373,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2025,6 +2397,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2043,6 +2419,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2063,6 +2443,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2081,6 +2465,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2101,6 +2489,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2119,6 +2511,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2139,6 +2535,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2157,6 +2557,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2177,6 +2581,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2195,6 +2603,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2215,6 +2627,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2233,6 +2649,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2253,6 +2673,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2272,6 +2696,10 @@ border-radius: 20px;</string>
             <height>20</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -2290,6 +2718,10 @@ border-radius: 20px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
