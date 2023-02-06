@@ -2652,7 +2652,9 @@ border-radius: 3px;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">background-color : white;
-border-radius: 3px;</string>
+border-radius: 3px;
+border: 2px solid blue;
+outline: solid;</string>
           </property>
           <property name="text">
            <string/>
@@ -2808,7 +2810,7 @@ border: 0px;</string>
      <x>0</x>
      <y>0</y>
      <width>997</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menucouleur">
