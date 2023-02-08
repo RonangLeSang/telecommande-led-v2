@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>997</width>
-    <height>751</height>
+    <height>797</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -81,6 +81,9 @@ border-radius: 20px;</string>
               <height>22</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: white</string>
+            </property>
             <property name="text">
              <string>Rouge</string>
             </property>
@@ -111,6 +114,9 @@ border-radius: 20px;</string>
               <width>50</width>
               <height>0</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">color: white</string>
             </property>
             <property name="text">
              <string>Vert</string>
@@ -143,6 +149,9 @@ border-radius: 20px;</string>
               <height>0</height>
              </size>
             </property>
+            <property name="styleSheet">
+             <string notr="true">color: white</string>
+            </property>
             <property name="text">
              <string>Bleu</string>
             </property>
@@ -168,6 +177,98 @@ border-radius: 20px;</string>
       </item>
       <item>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="17">
+         <widget class="QPushButton" name="ledButton61">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="21">
+         <widget class="QPushButton" name="ledButton57">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="7" column="6">
+         <widget class="QPushButton" name="ledButton77">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="22">
+         <widget class="QPushButton" name="ledButton56">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="12" column="6">
          <widget class="QPushButton" name="ledButton82">
           <property name="minimumSize">
@@ -191,8 +292,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="40">
-         <widget class="QPushButton" name="ledButton38">
+        <item row="1" column="24">
+         <widget class="QPushButton" name="ledButton54">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -260,8 +361,50 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="24">
-         <widget class="QPushButton" name="ledButton54">
+        <item row="1" column="40">
+         <widget class="QPushButton" name="ledButton38">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="6">
+         <widget class="QLabel" name="label_5">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="12">
+         <widget class="QPushButton" name="ledButton66">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -306,50 +449,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="12">
-         <widget class="QPushButton" name="ledButton66">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="6">
-         <widget class="QLabel" name="label_5">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="38">
-         <widget class="QPushButton" name="ledButton40">
+        <item row="1" column="14">
+         <widget class="QPushButton" name="ledButton64">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -390,54 +491,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="14">
-         <widget class="QPushButton" name="ledButton64">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="23">
-         <widget class="QPushButton" name="ledButton55">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="6">
-         <widget class="QPushButton" name="ledButton74">
+        <item row="1" column="38">
+         <widget class="QPushButton" name="ledButton40">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -482,6 +537,29 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
+        <item row="4" column="6">
+         <widget class="QPushButton" name="ledButton74">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="10" column="6">
          <widget class="QPushButton" name="ledButton80">
           <property name="minimumSize">
@@ -505,54 +583,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="8" column="6">
-         <widget class="QPushButton" name="ledButton78">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="6">
-         <widget class="QPushButton" name="ledButton73">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="19">
-         <widget class="QPushButton" name="ledButton59">
+        <item row="1" column="23">
+         <widget class="QPushButton" name="ledButton55">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -597,8 +629,54 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="9" column="6">
-         <widget class="QPushButton" name="ledButton79">
+        <item row="8" column="6">
+         <widget class="QPushButton" name="ledButton78">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="19">
+         <widget class="QPushButton" name="ledButton59">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="6">
+         <widget class="QPushButton" name="ledButton73">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -643,146 +721,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="17">
-         <widget class="QPushButton" name="ledButton61">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="21">
-         <widget class="QPushButton" name="ledButton57">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="22">
-         <widget class="QPushButton" name="ledButton56">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="7" column="6">
-         <widget class="QPushButton" name="ledButton77">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="18" column="42">
-         <widget class="QPushButton" name="ledButton20">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="17" column="42">
-         <widget class="QPushButton" name="ledButton21">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="19" column="42">
-         <widget class="QPushButton" name="ledButton19">
+        <item row="9" column="6">
+         <widget class="QPushButton" name="ledButton79">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -827,8 +767,54 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="16" column="42">
-         <widget class="QPushButton" name="ledButton22">
+        <item row="18" column="42">
+         <widget class="QPushButton" name="ledButton20">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="19" column="42">
+         <widget class="QPushButton" name="ledButton19">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="17" column="42">
+         <widget class="QPushButton" name="ledButton21">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -896,31 +882,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="42">
-         <widget class="QPushButton" name="ledButton27">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="12" column="42">
-         <widget class="QPushButton" name="ledButton26">
+        <item row="16" column="42">
+         <widget class="QPushButton" name="ledButton22">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -965,8 +928,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="10" column="42">
-         <widget class="QPushButton" name="ledButton28">
+        <item row="12" column="42">
+         <widget class="QPushButton" name="ledButton26">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -988,8 +951,31 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="9">
-         <widget class="QPushButton" name="ledButton69">
+        <item row="11" column="42">
+         <widget class="QPushButton" name="ledButton27">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="10" column="42">
+         <widget class="QPushButton" name="ledButton28">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1053,31 +1039,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="11" column="6">
-         <widget class="QPushButton" name="ledButton81">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="16">
-         <widget class="QPushButton" name="ledButton62">
+        <item row="1" column="9">
+         <widget class="QPushButton" name="ledButton69">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1145,8 +1108,31 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="15">
-         <widget class="QPushButton" name="ledButton63">
+        <item row="1" column="16">
+         <widget class="QPushButton" name="ledButton62">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="11" column="6">
+         <widget class="QPushButton" name="ledButton81">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1204,6 +1190,29 @@ border-radius: 3px;</string>
             <width>20</width>
             <height>20</height>
            </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="15">
+         <widget class="QPushButton" name="ledButton63">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -1302,6 +1311,29 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
+        <item row="1" column="41">
+         <widget class="QPushButton" name="ledButton37">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="19" column="6">
          <widget class="QPushButton" name="ledButton89">
           <property name="minimumSize">
@@ -1348,31 +1380,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="41">
-         <widget class="QPushButton" name="ledButton37">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="18" column="6">
-         <widget class="QPushButton" name="ledButton88">
+        <item row="5" column="6">
+         <widget class="QPushButton" name="ledButton75">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1417,29 +1426,6 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="6">
-         <widget class="QPushButton" name="ledButton75">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="32">
          <widget class="QPushButton" name="ledButton46">
           <property name="minimumSize">
@@ -1463,31 +1449,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="21" column="6">
-         <widget class="QPushButton" name="ledButton91">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="30">
-         <widget class="QPushButton" name="ledButton48">
+        <item row="18" column="6">
+         <widget class="QPushButton" name="ledButton88">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1532,6 +1495,29 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
+        <item row="21" column="6">
+         <widget class="QPushButton" name="ledButton91">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="31">
          <widget class="QPushButton" name="ledButton47">
           <property name="minimumSize">
@@ -1555,8 +1541,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="34">
-         <widget class="QPushButton" name="ledButton44">
+        <item row="1" column="30">
+         <widget class="QPushButton" name="ledButton48">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1624,31 +1610,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="1" column="35">
-         <widget class="QPushButton" name="ledButton43">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="6">
-         <widget class="QPushButton" name="ledButton76">
+        <item row="1" column="34">
+         <widget class="QPushButton" name="ledButton44">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1693,8 +1656,54 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
+        <item row="6" column="6">
+         <widget class="QPushButton" name="ledButton76">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="26">
          <widget class="QPushButton" name="ledButton52">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="35">
+         <widget class="QPushButton" name="ledButton43">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1923,8 +1932,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="2" column="42">
-         <widget class="QPushButton" name="ledButton36">
+        <item row="5" column="42">
+         <widget class="QPushButton" name="ledButton33">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -1969,8 +1978,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="5" column="42">
-         <widget class="QPushButton" name="ledButton33">
+        <item row="2" column="42">
+         <widget class="QPushButton" name="ledButton36">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2015,8 +2024,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="7">
-         <widget class="QPushButton" name="ledButton92">
+        <item row="22" column="41">
+         <widget class="QPushButton" name="ledButton16">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2038,8 +2047,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="41">
-         <widget class="QPushButton" name="ledButton16">
+        <item row="22" column="8">
+         <widget class="QPushButton" name="ledButton93">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2084,8 +2093,31 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="8">
-         <widget class="QPushButton" name="ledButton93">
+        <item row="22" column="7">
+         <widget class="QPushButton" name="ledButton92">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="39">
+         <widget class="QPushButton" name="ledButton14">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2132,52 +2164,6 @@ border-radius: 3px;</string>
         </item>
         <item row="22" column="38">
          <widget class="QPushButton" name="ledButton13">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="39">
-         <widget class="QPushButton" name="ledButton14">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="11">
-         <widget class="QPushButton" name="ledButton96">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2268,8 +2254,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="13">
-         <widget class="QPushButton" name="ledButton98">
+        <item row="22" column="11">
+         <widget class="QPushButton" name="ledButton96">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2314,77 +2300,31 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
+        <item row="22" column="13">
+         <widget class="QPushButton" name="ledButton98">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
         <item row="22" column="35">
          <widget class="QPushButton" name="ledButton10">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="34">
-         <widget class="QPushButton" name="ledButton9">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="14">
-         <widget class="QPushButton" name="ledButton99">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="33">
-         <widget class="QPushButton" name="ledButton8">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2429,8 +2369,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="15">
-         <widget class="QPushButton" name="ledButton100">
+        <item row="22" column="33">
+         <widget class="QPushButton" name="ledButton8">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2452,8 +2392,54 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="16">
-         <widget class="QPushButton" name="ledButton101">
+        <item row="22" column="14">
+         <widget class="QPushButton" name="ledButton99">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="34">
+         <widget class="QPushButton" name="ledButton9">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="15">
+         <widget class="QPushButton" name="ledButton100">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2498,31 +2484,8 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="18">
-         <widget class="QPushButton" name="ledButton103">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item row="22" column="30">
-         <widget class="QPushButton" name="ledButton5">
+        <item row="22" column="16">
+         <widget class="QPushButton" name="ledButton101">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2590,8 +2553,31 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="28">
-         <widget class="QPushButton" name="ledButton3">
+        <item row="22" column="30">
+         <widget class="QPushButton" name="ledButton5">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="18">
+         <widget class="QPushButton" name="ledButton103">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2652,9 +2638,30 @@ border-radius: 3px;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">background-color : white;
-border-radius: 3px;
-border: 2px solid blue;
-outline: solid;</string>
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="28">
+         <widget class="QPushButton" name="ledButton3">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
           </property>
           <property name="text">
            <string/>
@@ -2663,6 +2670,29 @@ outline: solid;</string>
         </item>
         <item row="22" column="21">
          <widget class="QPushButton" name="ledButton106">
+          <property name="minimumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>20</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color : white;
+border-radius: 3px;</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="22" column="20">
+         <widget class="QPushButton" name="ledButton105">
           <property name="minimumSize">
            <size>
             <width>20</width>
@@ -2707,26 +2737,82 @@ border-radius: 3px;</string>
           </property>
          </widget>
         </item>
-        <item row="22" column="20">
-         <widget class="QPushButton" name="ledButton105">
-          <property name="minimumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>20</width>
-            <height>20</height>
-           </size>
-          </property>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="tpsLabel">
           <property name="styleSheet">
-           <string notr="true">background-color : white;
-border-radius: 3px;</string>
+           <string notr="true">color: white</string>
           </property>
           <property name="text">
-           <string/>
+           <string>tps</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="spinBox"/>
+        </item>
+        <item>
+         <widget class="QLabel" name="msLabel">
+          <property name="styleSheet">
+           <string notr="true">color: white</string>
+          </property>
+          <property name="text">
+           <string>(ms)</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="backButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: white;
+padding: 15px;
+color: black;
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>précédent</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: white;
+padding: 15px;
+color: black;
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>save</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="loadButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: white;
+padding: 15px;
+color: black;
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>load</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="nextButton">
+          <property name="styleSheet">
+           <string notr="true">background-color: white;
+padding: 15px;
+color: black;
+border-radius: 20px;</string>
+          </property>
+          <property name="text">
+           <string>suivant</string>
           </property>
          </widget>
         </item>
@@ -2810,7 +2896,7 @@ border: 0px;</string>
      <x>0</x>
      <y>0</y>
      <width>997</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menucouleur">

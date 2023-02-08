@@ -5,10 +5,11 @@ import paramiko
 import threading
 import json
 
+from functools import partial
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
-from PySide6.QtWidgets import QFileDialog
-from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QFileDialog, QLabel, QWidget
+from PySide6.QtGui import QIcon, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PySide6.QtUiTools import QUiLoader
 from scipy.spatial import distance
@@ -33,6 +34,7 @@ class ConnectionAttempt(threading.Thread):
             connectionWait.stop = True
             connectionWait.join()
 
+
 class ConnectionWait(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self)
@@ -50,15 +52,22 @@ class ConnectionWait(threading.Thread):
                 i += 1
 
 
+class LedButton:
+    def __init__(self, button):
+        self.button = button
+        self.isLocked = False
+        self.color = "#000000"
+
+
 def rgb_to_hex(r, g, b):
-    return "#{:02x}{:02x}{:02x}".format(r,g,b)
+    return "#{:02x}{:02x}{:02x}".format(r, g, b)
 
 
 def hex_to_rgb(hex):
     hex = hex[1:]
     rgb = []
     for i in (0, 2, 4):
-        decimal = int(hex[i:i+2], 16)
+        decimal = int(hex[i:i + 2], 16)
         rgb.append(decimal)
     return tuple(rgb)
 
@@ -122,23 +131,15 @@ def set_button_color(middleGrey: int):
     policeColor = get_police_color(middleGrey)
     label_color(abs(policeColor - 255))
 
-    window.colorLaunch.setStyleSheet(
-        f"background-color: rgb({middleGrey},{middleGrey},{middleGrey});"
-        f"padding: 15px;"
-        f"color: rgb({policeColor},{policeColor},{policeColor});"
-        f"border-radius: 20px;")
+    buttons = [window.colorLaunch, window.launchHyperyon, window.quitHyperyon, window.backButton, window.nextButton,
+               window.saveButton, window.loadButton]
 
-    window.launchHyperyon.setStyleSheet(
-        f"background-color: rgb({middleGrey},{middleGrey},{middleGrey});"
-        f"padding: 15px;"
-        f"color: rgb({policeColor},{policeColor},{policeColor});"
-        f"border-radius: 20px;")
-
-    window.quitHyperyon.setStyleSheet(
-        f"background-color: rgb({middleGrey},{middleGrey},{middleGrey});"
-        f"padding: 15px;"
-        f"color: rgb({policeColor},{policeColor},{policeColor});"
-        f"border-radius: 20px;")
+    for button in buttons:
+        button.setStyleSheet(
+            f"background-color: rgb({middleGrey},{middleGrey},{middleGrey});"
+            f"padding: 15px;"
+            f"color: rgb({policeColor},{policeColor},{policeColor});"
+            f"border-radius: 20px;")
 
 
 def set_bg():
@@ -153,7 +154,8 @@ def change_bg_sliders():
     window.valGreen.setValue(window.sliderGreen.value())
     window.valBlue.setValue(window.sliderBlue.value())
     window.editHexa.setText(rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()))
-    window.editPantone.setText(closest_pantone((window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())))
+    window.editPantone.setText(
+        closest_pantone((window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())))
 
 
 def change_bg_spinbox():
@@ -219,20 +221,32 @@ def wait_connection(i):
 def launch_color():
     quit_hyperion()
     chaine = f"echo {window.valRed.value()}l>/home/pi/coucou.txt"
-    stdin,stdout,stderr=ssh_client.exec_command(chaine)
+    stdin, stdout, stderr = ssh_client.exec_command(chaine)
     chaine = f"echo {window.valGreen.value()}l>>/home/pi/coucou.txt"
-    stdin,stdout,stderr=ssh_client.exec_command(chaine)
+    stdin, stdout, stderr = ssh_client.exec_command(chaine)
     chaine = f"echo {window.valBlue.value()}l>>/home/pi/coucou.txt"
-    stdin,stdout,stderr=ssh_client.exec_command(chaine)
-    stdin,stdout,stderr=ssh_client.exec_command("python3 /home/pi/hue.py")
+    stdin, stdout, stderr = ssh_client.exec_command(chaine)
+    stdin, stdout, stderr = ssh_client.exec_command("python3 /home/pi/hue.py")
 
 
 def launch_hyperion():
-    stdin,stdout,stderr = ssh_client.exec_command("/usr/bin/hyperiond")
+    stdin, stdout, stderr = ssh_client.exec_command("/usr/bin/hyperiond")
 
 
 def quit_hyperion():
-    stdin,stdout,stderr = ssh_client.exec_command("killall hyperiond")
+    stdin, stdout, stderr = ssh_client.exec_command("killall hyperiond")
+
+
+def led_clicked(indice, leds):
+    if not leds[indice].isLocked:
+        leds[indice].button.setStyleSheet(f"border-radius: 3px;"
+                                    f"border: 2px solid blue;"
+                                    f"outline: solid;"
+                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},{window.sliderBlue.value()});")
+    else:
+        leds[indice].button.setStyleSheet(f"background-color : white;"
+                                          f"border-radius: 3px;")
+    leds[indice].isLocked = not leds[indice].isLocked
 
 
 if __name__ == "__main__":
@@ -259,7 +273,32 @@ if __name__ == "__main__":
     window.setStyleSheet(
         f"background-color : rgb({0},{0},{0})")
 
-    leds = [window.ledButton1, window.ledButton2, window.ledButton3, window.ledButton4, window.ledButton5, window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10, window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15, window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20, window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25, window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30, window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35, window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40, window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45, window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50, window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55, window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60, window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65, window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70, window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75, window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80, window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85, window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90, window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95, window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100, window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104, window.ledButton105, window.ledButton106, window.ledButton107, window.ledButton108]
+    ledsButton = [window.ledButton1, window.ledButton2, window.ledButton3, window.ledButton4, window.ledButton5,
+            window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10,
+            window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15,
+            window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20,
+            window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25,
+            window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30,
+            window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35,
+            window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40,
+            window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45,
+            window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50,
+            window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55,
+            window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60,
+            window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65,
+            window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70,
+            window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75,
+            window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80,
+            window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85,
+            window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90,
+            window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95,
+            window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100,
+            window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104, window.ledButton105,
+            window.ledButton106, window.ledButton107, window.ledButton108]
+
+    leds = []
+    for led in ledsButton:
+        leds.append(LedButton(led))
 
     window.sliderRed.setMaximum(255)
     window.sliderGreen.setMaximum(255)
@@ -279,16 +318,12 @@ if __name__ == "__main__":
     window.editHexa.textChanged.connect(change_bg_hex)
     window.editPantone.returnPressed.connect(change_bg_pantone)
 
-    window.labelRed.setStyleSheet(
-        f"color: rgb(255,255,255)")
-    window.labelGreen.setStyleSheet(
-        f"color: rgb(255,255,255)")
-    window.labelBlue.setStyleSheet(
-        f"color: rgb(255,255,255)")
-
     window.colorLaunch.clicked.connect(launch_color)
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
+
+    for i in range(len(leds)):
+        leds[i].button.clicked.connect(partial(led_clicked, i, leds))
 
     app.exec()
 
