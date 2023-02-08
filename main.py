@@ -107,24 +107,17 @@ def get_police_color(middleGrey: int):
 
 
 def label_color(color: int):
-    window.labelRed.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.labelGreen.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.labelBlue.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.connectionStatus.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.labelHexa.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.labelPantone.setStyleSheet(
-        f"color: rgb({color},{color},{color})")
-    window.editHexa.setStyleSheet(
-        f"color: rgb({color},{color},{color});\n"
-        f"border: 0px;")
-    window.editPantone.setStyleSheet(
-        f"color: rgb({color},{color},{color});\n"
-        f"border: 0px;")
+    labels = [window.labelRed, window.labelGreen, window.labelBlue, window.connectionStatus, window.labelHexa,
+              window.labelPantone, window.tpsLabel, window.msLabel]
+    spinBoxes = [window.editHexa, window.editPantone]
+
+    for label in labels:
+        label.setStyleSheet(
+            f"color: rgb({color},{color},{color})")
+    for spinBoxe in spinBoxes:
+        spinBoxe.setStyleSheet(
+            f"color: rgb({color},{color},{color});\n"
+            f"border: 0px;")
 
 
 def set_button_color(middleGrey: int):

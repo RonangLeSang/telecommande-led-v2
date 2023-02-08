@@ -2752,7 +2752,7 @@ border-radius: 3px;</string>
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="spinBox"/>
+         <widget class="QSpinBox" name="timeChoose"/>
         </item>
         <item>
          <widget class="QLabel" name="msLabel">
