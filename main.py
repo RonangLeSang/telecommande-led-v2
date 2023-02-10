@@ -16,6 +16,9 @@ from scipy.spatial import distance
 
 
 class ConnectionAttempt(threading.Thread):
+    """
+    Thread qui tente de se connecter au raspberry
+    """
     def __init__(self, ip_address, username, password):
         threading.Thread.__init__(self)
         self.isConnected = False
@@ -24,6 +27,9 @@ class ConnectionAttempt(threading.Thread):
         self.password = password
 
     def run(self):
+        """
+        Continue d'essayer de se connecter tant qu'il n'y arrive pas et marque de courtes pauses
+        """
         while not self.isConnected:
             connectionWait = ConnectionWait()
             connectionWait.start()
@@ -36,11 +42,17 @@ class ConnectionAttempt(threading.Thread):
 
 
 class ConnectionWait(threading.Thread):
+    """
+    affiche un visuel d'attente de connection
+    """
     def __init__(self):
         threading.Thread.__init__(self)
         self.stop = False
 
     def run(self):
+        """
+        Affiche un visuel jusqu'à la connection
+        """
         time.sleep(2)
         i = 0
         while not self.stop:
@@ -53,17 +65,32 @@ class ConnectionWait(threading.Thread):
 
 
 class LedButton:
+    """
+    Objet représentant une LED grâce à un bouton
+    """
     def __init__(self, button):
         self.button = button
         self.isLocked = False
         self.color = "#000000"
 
 
-def rgb_to_hex(r, g, b):
+def rgb_to_hex(r : int, g : int, b : int):
+    """
+    Renvoi un code hexadécimal à partir d'un code RGB sous le format # 00 00 00
+    :param r: int
+    :param g: int
+    :param b: int
+    :return: hexa
+    """
     return "#{:02x}{:02x}{:02x}".format(r, g, b)
 
 
-def hex_to_rgb(hex):
+def hex_to_rgb(hex : hex):
+    """
+    À partir d'un code hexadecimal sous format # 00 00 00, retourne un tuple rgb
+    :param hex: hexa
+    :return (rgb): tuple RGB
+    """
     hex = hex[1:]
     rgb = []
     for i in (0, 2, 4):
@@ -73,6 +100,11 @@ def hex_to_rgb(hex):
 
 
 def closest_pantone(rgb):
+    """
+    Renvoi le code pantone le plus proche du tuple rgb en paramètre à l'aide d'un dictionnaire
+    :param rgb: tuple
+    :return rep: str code Pantone
+    """
     with open("results.json", "r") as file:
         pantone = json.load(file)
         min_dist = 2555555
@@ -87,6 +119,11 @@ def closest_pantone(rgb):
 
 
 def pantone_to_rgb(code_pantone):
+    """
+    Retourne un tuple rgb à partir du code Pantone correspondant à l'aide d'un dictionnaire
+    :param code_pantone: str
+    :return (rgb): tuple rgb
+    """
     with open("results.json", "r") as file:
         pantone = json.load(file)
     if code_pantone in pantone.keys():
@@ -96,10 +133,19 @@ def pantone_to_rgb(code_pantone):
 
 
 def get_middle_grey():
+    """
+    Retourne une valeur de gris en faisant la moyenne des paramètres R, G et B
+    :return int:
+    """
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
 
 
 def get_police_color(middleGrey: int):
+    """
+    Renvoi la couleur de police à utiliser en fonction du niveau de gris des boutons
+    :param middleGrey: moyenne des couleurs
+    :return: blanc ou noir
+    """
     if middleGrey >= 128:
         return 0
     else:
@@ -107,6 +153,10 @@ def get_police_color(middleGrey: int):
 
 
 def label_color(color: int):
+    """
+    Change la couleur des labels en fonction du fond
+    :param color: niveau de gris
+    """
     labels = [window.labelRed, window.labelGreen, window.labelBlue, window.connectionStatus, window.labelHexa,
               window.labelPantone, window.tpsLabel, window.msLabel]
     spinBoxes = [window.editHexa, window.editPantone]
@@ -121,6 +171,10 @@ def label_color(color: int):
 
 
 def set_button_color(middleGrey: int):
+    """
+    Change la couleur des bouttons en fonction du fond
+    :param middleGrey: niveau de gris
+    """
     policeColor = get_police_color(middleGrey)
     label_color(abs(policeColor - 255))
 
@@ -136,12 +190,18 @@ def set_button_color(middleGrey: int):
 
 
 def set_bg():
+    """
+    Change la couleur de fond en fonction des valeurs de curseurs
+    """
     window.setStyleSheet(
         f"background-color : rgb({window.sliderRed.value()},{window.sliderGreen.value()},{window.sliderBlue.value()})")
     set_button_color(get_middle_grey())
 
 
 def change_bg_sliders():
+    """
+    Change la couleur de fond et des labels en fonction des valeurs de curseurs
+    """
     set_bg()
     window.valRed.setValue(window.sliderRed.value())
     window.valGreen.setValue(window.sliderGreen.value())
@@ -152,6 +212,9 @@ def change_bg_sliders():
 
 
 def change_bg_spinbox():
+    """
+    Change la couleur de fond et des labels en fonction des valeurs de spinbox
+    """
     set_bg()
     window.sliderRed.setValue(window.valRed.value())
     window.sliderGreen.setValue(window.valGreen.value())
@@ -159,6 +222,9 @@ def change_bg_spinbox():
 
 
 def change_bg_hex():
+    """
+    Change la couleur de fond et des labels en fonction de la valeur hexadécimale rentrée par l'utilisateur
+    """
     if len(window.editHexa.text()) == 7:
         hex = hex_to_rgb(window.editHexa.text())
         window.sliderRed.setValue(hex[0])
@@ -167,6 +233,9 @@ def change_bg_hex():
 
 
 def change_bg_pantone():
+    """
+    Change la couleur de fond et des labels en fonction du code pantone rentrée par l'utilisateur
+    """
     rgb = pantone_to_rgb(window.editPantone.text())
     window.sliderRed.setValue(rgb[0])
     window.sliderGreen.setValue(rgb[1])
@@ -174,12 +243,24 @@ def change_bg_pantone():
 
 
 def get_rgb():
+    """
+    Renvoie les valeurs rgb des curseurs
+    :return:
+    """
     return f"{window.valRed.value()}\n" \
            f"{window.valGreen.value()}\n" \
            f"{window.valBlue.value()}\n"
 
 
 def connect(ip_address, username, password, connectionWait):
+    """
+    Tente une connection en SSH en renvoie l'état de connection
+    :param ip_address:
+    :param username:
+    :param password:
+    :param connectionWait:
+    :return: l'état de connection
+    """
     global ssh_client
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -198,20 +279,32 @@ def connect(ip_address, username, password, connectionWait):
 
 
 def not_connected():
+    """
+    Affiche l'échec de connection sur l'écran
+    """
     window.connectionStatus.setText("échec de la connection")
 
 
 def connected():
+    """
+    Affiche la réussite de connection sur l'écran
+    """
     window.connectionStatus.setText(f"connecté à : {ip_address}")
 
 
 def wait_connection(i):
+    """
+    Affiche l'attente de connection en fonction de l'indice
+    """
     affichage = ["En attente de connexion   ", "En attente de connexion.  ", "En attente de connexion.. ",
                  "En attente de connexion..."]
     window.connectionStatus.setText(affichage[i])
 
 
 def launch_color():
+    """
+    Quitte Hyperion et envoi la couleur choisi dans un fichier par SSH
+    """
     quit_hyperion()
     chaine = f"echo {window.valRed.value()}l>/home/pi/coucou.txt"
     stdin, stdout, stderr = ssh_client.exec_command(chaine)
@@ -223,23 +316,70 @@ def launch_color():
 
 
 def launch_hyperion():
+    """
+    Lance Hyperion par SSH
+    """
     stdin, stdout, stderr = ssh_client.exec_command("/usr/bin/hyperiond")
 
 
 def quit_hyperion():
+    """
+    Quitte Hyperion par SSH
+    """
     stdin, stdout, stderr = ssh_client.exec_command("killall hyperiond")
 
 
 def led_clicked(indice, leds):
+    """
+    Gère les clicks de leds en changeant leur couleur
+    :param indice:
+    :param leds:
+    """
     if not leds[indice].isLocked:
         leds[indice].button.setStyleSheet(f"border-radius: 3px;"
                                     f"border: 2px solid blue;"
                                     f"outline: solid;"
-                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},{window.sliderBlue.value()});")
+                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},"
+                                    f"{window.sliderBlue.value()});")
     else:
         leds[indice].button.setStyleSheet(f"background-color : white;"
                                           f"border-radius: 3px;")
     leds[indice].isLocked = not leds[indice].isLocked
+
+
+def back_frame():
+    """
+    affiche la frame d'animation précédente
+    """
+    pass
+
+
+def next_frame():
+    """
+    affiche la frame d'animation suivante
+    """
+    pass
+
+
+def save():
+    """
+    Sauvegarde un fichier d'animation
+    """
+    pass
+
+
+def save_frame():
+    """
+    Sauvegarde une frame d'animation
+    """
+    pass
+
+
+def load():
+    """
+    Charge un fichier d'animation
+    """
+    pass
 
 
 if __name__ == "__main__":
@@ -314,6 +454,11 @@ if __name__ == "__main__":
     window.colorLaunch.clicked.connect(launch_color)
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
+
+    window.backButton.clicked.connect(back_frame)
+    window.nextButton.clicked.connect(next_frame)
+    window.saveButton.clicked.connect(save)
+    window.loadButton.clicked.connect(load)
 
     for i in range(len(leds)):
         leds[i].button.clicked.connect(partial(led_clicked, i, leds))
