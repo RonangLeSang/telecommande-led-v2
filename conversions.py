@@ -45,17 +45,3 @@ def closest_pantone(rgb):
                 rep = color_pantone
     return rep
 
-
-def pantone_to_rgb(code_pantone):
-    """
-    Retourne un tuple rgb à partir du code Pantone correspondant à l'aide d'un dictionnaire
-    :param code_pantone: str
-    :return (rgb): tuple rgb
-    """
-    with open("results.json", "r") as file:
-        pantone = json.load(file)
-    if code_pantone in pantone.keys():
-        return pantone[code_pantone]
-    else:
-        return tuple([window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()])
-
