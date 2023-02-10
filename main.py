@@ -14,6 +14,11 @@ from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayou
 from PySide6.QtUiTools import QUiLoader
 from scipy.spatial import distance
 
+from colors import get_police_color
+from conversions import rgb_to_hex, hex_to_rgb, pantone_to_rgb, closest_pantone
+
+
+# connection
 
 class ConnectionAttempt(threading.Thread):
     """
@@ -64,6 +69,34 @@ class ConnectionWait(threading.Thread):
                 i += 1
 
 
+def connect(ip_address, username, password, connectionWait):
+    """
+    Tente une connection en SSH en renvoie l'état de connection
+    :param ip_address:
+    :param username:
+    :param password:
+    :param connectionWait:
+    :return: l'état de connection
+    """
+    global ssh_client
+    ssh_client = paramiko.SSHClient()
+    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    try:
+        ssh_client.connect(hostname=ip_address, username=username, password=password)
+        remote_connection = ssh_client.invoke_shell()
+        connectionWait.stop = True
+        connectionWait.join()
+        connected()
+        return True
+    except:
+        connectionWait.stop = True
+        connectionWait.join()
+        not_connected()
+        return False
+
+
+# widgets
+
 class LedButton:
     """
     Objet représentant une LED grâce à un bouton
@@ -74,63 +107,25 @@ class LedButton:
         self.color = "#000000"
 
 
-def rgb_to_hex(r : int, g : int, b : int):
+def led_clicked(indice, leds):
     """
-    Renvoi un code hexadécimal à partir d'un code RGB sous le format # 00 00 00
-    :param r: int
-    :param g: int
-    :param b: int
-    :return: hexa
+    Gère les clicks de leds en changeant leur couleur
+    :param indice:
+    :param leds:
     """
-    return "#{:02x}{:02x}{:02x}".format(r, g, b)
-
-
-def hex_to_rgb(hex : hex):
-    """
-    À partir d'un code hexadecimal sous format # 00 00 00, retourne un tuple rgb
-    :param hex: hexa
-    :return (rgb): tuple RGB
-    """
-    hex = hex[1:]
-    rgb = []
-    for i in (0, 2, 4):
-        decimal = int(hex[i:i + 2], 16)
-        rgb.append(decimal)
-    return tuple(rgb)
-
-
-def closest_pantone(rgb):
-    """
-    Renvoi le code pantone le plus proche du tuple rgb en paramètre à l'aide d'un dictionnaire
-    :param rgb: tuple
-    :return rep: str code Pantone
-    """
-    with open("results.json", "r") as file:
-        pantone = json.load(file)
-        min_dist = 2555555
-        pantoneKeys = pantone.keys()
-        rep = min(pantoneKeys)
-        for color_pantone in pantoneKeys:
-            dist = distance.euclidean(tuple(pantone[color_pantone]), rgb)
-            if dist < min_dist:
-                min_dist = dist
-                rep = color_pantone
-    return rep
-
-
-def pantone_to_rgb(code_pantone):
-    """
-    Retourne un tuple rgb à partir du code Pantone correspondant à l'aide d'un dictionnaire
-    :param code_pantone: str
-    :return (rgb): tuple rgb
-    """
-    with open("results.json", "r") as file:
-        pantone = json.load(file)
-    if code_pantone in pantone.keys():
-        return pantone[code_pantone]
+    if not leds[indice].isLocked:
+        leds[indice].button.setStyleSheet(f"border-radius: 3px;"
+                                    f"border: 2px solid blue;"
+                                    f"outline: solid;"
+                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},"
+                                    f"{window.sliderBlue.value()});")
     else:
-        return tuple([window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()])
+        leds[indice].button.setStyleSheet(f"background-color : white;"
+                                          f"border-radius: 3px;")
+    leds[indice].isLocked = not leds[indice].isLocked
 
+
+# couleurs
 
 def get_middle_grey():
     """
@@ -138,18 +133,6 @@ def get_middle_grey():
     :return int:
     """
     return 255 - (window.sliderRed.value() + window.sliderGreen.value() + window.sliderBlue.value()) / 3
-
-
-def get_police_color(middleGrey: int):
-    """
-    Renvoi la couleur de police à utiliser en fonction du niveau de gris des boutons
-    :param middleGrey: moyenne des couleurs
-    :return: blanc ou noir
-    """
-    if middleGrey >= 128:
-        return 0
-    else:
-        return 255
 
 
 def label_color(color: int):
@@ -252,31 +235,7 @@ def get_rgb():
            f"{window.valBlue.value()}\n"
 
 
-def connect(ip_address, username, password, connectionWait):
-    """
-    Tente une connection en SSH en renvoie l'état de connection
-    :param ip_address:
-    :param username:
-    :param password:
-    :param connectionWait:
-    :return: l'état de connection
-    """
-    global ssh_client
-    ssh_client = paramiko.SSHClient()
-    ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    try:
-        ssh_client.connect(hostname=ip_address, username=username, password=password)
-        remote_connection = ssh_client.invoke_shell()
-        connectionWait.stop = True
-        connectionWait.join()
-        connected()
-        return True
-    except:
-        connectionWait.stop = True
-        connectionWait.join()
-        not_connected()
-        return False
-
+# affichage
 
 def not_connected():
     """
@@ -300,6 +259,8 @@ def wait_connection(i):
                  "En attente de connexion..."]
     window.connectionStatus.setText(affichage[i])
 
+
+# commandes SSH
 
 def launch_color():
     """
@@ -329,34 +290,18 @@ def quit_hyperion():
     stdin, stdout, stderr = ssh_client.exec_command("killall hyperiond")
 
 
-def led_clicked(indice, leds):
-    """
-    Gère les clicks de leds en changeant leur couleur
-    :param indice:
-    :param leds:
-    """
-    if not leds[indice].isLocked:
-        leds[indice].button.setStyleSheet(f"border-radius: 3px;"
-                                    f"border: 2px solid blue;"
-                                    f"outline: solid;"
-                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},"
-                                    f"{window.sliderBlue.value()});")
-    else:
-        leds[indice].button.setStyleSheet(f"background-color : white;"
-                                          f"border-radius: 3px;")
-    leds[indice].isLocked = not leds[indice].isLocked
-
+# animations
 
 def back_frame():
     """
-    affiche la frame d'animation précédente
+    Affiche la frame d'animation précédente
     """
     pass
 
 
 def next_frame():
     """
-    affiche la frame d'animation suivante
+    Affiche la frame d'animation suivante
     """
     pass
 
