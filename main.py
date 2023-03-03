@@ -5,6 +5,7 @@ import paramiko
 import threading
 import json
 
+from pynput import mouse
 from functools import partial
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
@@ -15,7 +16,8 @@ from PySide6.QtUiTools import QUiLoader
 from scipy.spatial import distance
 
 from colors import get_police_color
-from conversions import rgb_to_hex, hex_to_rgb, pantone_to_rgb, closest_pantone
+from conversions import rgb_to_hex, hex_to_rgb, closest_pantone
+#from mouseCheck import MouseCheck
 
 
 # connection
@@ -24,6 +26,7 @@ class ConnectionAttempt(threading.Thread):
     """
     Thread qui tente de se connecter au raspberry
     """
+
     def __init__(self, ip_address, username, password):
         threading.Thread.__init__(self)
         self.isConnected = False
@@ -50,6 +53,7 @@ class ConnectionWait(threading.Thread):
     """
     affiche un visuel d'attente de connection
     """
+
     def __init__(self):
         threading.Thread.__init__(self)
         self.stop = False
@@ -101,6 +105,7 @@ class LedButton:
     """
     Objet représentant une LED grâce à un bouton
     """
+
     def __init__(self, button):
         self.button = button
         self.isLocked = False
@@ -115,14 +120,35 @@ def led_clicked(indice, leds):
     """
     if not leds[indice].isLocked:
         leds[indice].button.setStyleSheet(f"border-radius: 3px;"
-                                    f"border: 2px solid blue;"
-                                    f"outline: solid;"
-                                    f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},"
-                                    f"{window.sliderBlue.value()});")
+                                          f"border: 2px solid blue;"
+                                          f"outline: solid;"
+                                          f"background-color: rgb({window.sliderRed.value()},{window.sliderGreen.value()},"
+                                          f"{window.sliderBlue.value()});")
+        leds[indice].color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(),
+                                        window.sliderBlue.value())
     else:
         leds[indice].button.setStyleSheet(f"background-color : white;"
                                           f"border-radius: 3px;")
     leds[indice].isLocked = not leds[indice].isLocked
+
+
+class MouseCheck(threading.Thread):
+
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.isPressed = False
+
+
+    def on_click(self, x, y, button, pressed):
+        if pressed and str(button) == 'left':
+            self.isPressed = True
+        else:
+            self.isPressed = False
+
+
+    def run(self):
+        with mouse.Listener(on_click=self.on_click) as listener:
+            listener.join()
 
 
 # couleurs
@@ -142,7 +168,7 @@ def label_color(color: int):
     """
     labels = [window.labelRed, window.labelGreen, window.labelBlue, window.connectionStatus, window.labelHexa,
               window.labelPantone, window.tpsLabel, window.msLabel]
-    spinBoxes = [window.editHexa, window.editPantone]
+    spinBoxes = [window.editHexa, window.editPantone, window.pageIndicator]
 
     for label in labels:
         label.setStyleSheet(
@@ -274,6 +300,12 @@ def wait_connection(i):
     window.connectionStatus.setText(affichage[i])
 
 
+def indicate_page():
+    global currentFrame
+    global savedFrames
+    window.pageIndicator.setText(f"frame : {currentFrame+1}/{len(savedFrames)+1}")
+
+
 # commandes SSH
 
 def launch_color():
@@ -306,18 +338,53 @@ def quit_hyperion():
 
 # animations
 
-def back_frame():
+def clean_boxes(leds):
+    for i in range(0, len(leds)):
+        if leds[i].isLocked:
+            led_clicked(i, leds)
+
+
+def back_frame(leds):
     """
     Affiche la frame d'animation précédente
     """
-    pass
+    global currentFrame
+    global savedFrames
+    change_frame(currentFrame, savedFrames)
+    if currentFrame > 0:
+        load_frame(savedFrames[currentFrame - 1], leds)
+        display_frame(leds)
+        currentFrame -= 1
+        indicate_page()
 
 
 def next_frame():
     """
     Affiche la frame d'animation suivante
     """
-    pass
+    global currentFrame
+    global savedFrames
+    change_frame(currentFrame, savedFrames)
+    if currentFrame == len(savedFrames)-1:
+        clean_boxes(leds)
+    else:
+        load_frame(savedFrames[currentFrame + 1], leds)
+        display_frame(leds)
+    currentFrame += 1
+    indicate_page()
+
+
+def change_frame(currentFrame, savedFrames):
+    """
+    Gère la sauvegarde et la modification de frames en fonction de l'indice et de la longueur de la liste
+    :param currentFrame:
+    :param savedFrames:
+    :return:
+    """
+    if currentFrame == len(savedFrames):
+        save_frame(leds, savedFrames)
+    else:
+        modif_frame(leds, savedFrames, currentFrame)
 
 
 def save():
@@ -327,11 +394,47 @@ def save():
     pass
 
 
-def save_frame():
+def save_frame(leds, save):
     """
     Sauvegarde une frame d'animation
     """
-    pass
+    frame = []
+    for led in leds:
+        if not led.isLocked:
+            led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
+        frame.append(led.color)
+    save.append(frame)
+
+
+def modif_frame(leds, savedFrames, indice):
+    """
+    modifie une frame
+    :param leds:
+    :param save:
+    :param indice:
+    :return:
+    """
+    frame = []
+    for led in leds:
+        if not led.isLocked:
+            led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
+        frame.append(led.color)
+    savedFrames[indice] = frame
+
+
+def display_frame(leds):
+    for led in leds:
+        ledColor = hex_to_rgb(led.color)
+        led.button.setStyleSheet(f"border-radius: 3px;"
+                                 f"border: 2px solid blue;"
+                                 f"outline: solid;"
+                                 f"background-color: rgb({ledColor[0]},{ledColor[1]}, {ledColor[2]});")
+
+
+def load_frame(frame, leds):
+    for i in range(0, len(leds)):
+        leds[i].color = frame[i]
+        leds[i].isLocked = True
 
 
 def load():
@@ -345,7 +448,12 @@ if __name__ == "__main__":
 
     # déclaration des variables
 
+    global savedFrames
+    global currentFrame
     global ip_address
+    currentFrame = 0
+    savedFrames = []
+
     ip_address = "192.168.1.53"
     username = "pi"
     password = "terrasnet"
@@ -354,6 +462,8 @@ if __name__ == "__main__":
 
     connectionAttempt = ConnectionAttempt(ip_address, username, password)
     connectionAttempt.start()
+    mouseCheck = MouseCheck()
+    mouseCheck.start()
 
     # fenêtre
 
@@ -366,27 +476,28 @@ if __name__ == "__main__":
         f"background-color : rgb({0},{0},{0})")
 
     ledsButton = [window.ledButton1, window.ledButton2, window.ledButton3, window.ledButton4, window.ledButton5,
-            window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10,
-            window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15,
-            window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20,
-            window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25,
-            window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30,
-            window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35,
-            window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40,
-            window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45,
-            window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50,
-            window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55,
-            window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60,
-            window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65,
-            window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70,
-            window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75,
-            window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80,
-            window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85,
-            window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90,
-            window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95,
-            window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100,
-            window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104, window.ledButton105,
-            window.ledButton106, window.ledButton107, window.ledButton108]
+                  window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10,
+                  window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15,
+                  window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20,
+                  window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25,
+                  window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30,
+                  window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35,
+                  window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40,
+                  window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45,
+                  window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50,
+                  window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55,
+                  window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60,
+                  window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65,
+                  window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70,
+                  window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75,
+                  window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80,
+                  window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85,
+                  window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90,
+                  window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95,
+                  window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100,
+                  window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104,
+                  window.ledButton105,
+                  window.ledButton106, window.ledButton107, window.ledButton108]
 
     leds = []
     for led in ledsButton:
@@ -414,7 +525,7 @@ if __name__ == "__main__":
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
-    window.backButton.clicked.connect(back_frame)
+    window.backButton.clicked.connect(partial(back_frame, leds))
     window.nextButton.clicked.connect(next_frame)
     window.saveButton.clicked.connect(save)
     window.loadButton.clicked.connect(load)
@@ -426,5 +537,6 @@ if __name__ == "__main__":
 
     # arrêt du programme
 
+    mouseCheck.join()
     connectionAttempt.isConnected = True
     connectionAttempt.join()
