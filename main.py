@@ -5,19 +5,16 @@ import paramiko
 import threading
 import json
 
-from pynput import mouse
 from functools import partial
 from PySide6 import QtCore, QtWidgets
 from PySide6.QtCore import QPropertyAnimation, QFile, QIODevice
-from PySide6.QtWidgets import QFileDialog, QLabel, QWidget
+from PySide6.QtWidgets import QFileDialog, QLabel, QWidget, QFrame
 from PySide6.QtGui import QIcon, Qt
 from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout
 from PySide6.QtUiTools import QUiLoader
-from scipy.spatial import distance
 
 from colors import get_police_color
 from conversions import rgb_to_hex, hex_to_rgb, closest_pantone
-#from mouseCheck import MouseCheck
 
 
 # connection
@@ -112,6 +109,49 @@ class LedButton:
         self.color = "#000000"
 
 
+
+class ColorButton(QFrame):
+
+    def __init__(self, parent=None):
+        super(ColorButton, self).__init__()
+        self.parent = parent
+        self.isPressed = False
+        self.setStyleSheet(f"background-color:red;\n"
+                           f"border-radius: 1px;"
+                           f"border: 1px solid black;")
+
+    def press(self):
+        self.isPressed = not self.isPressed
+        if self.isPressed:
+            QApplication.setOverrideCursor(Qt.CrossCursor)
+        else:
+            QApplication.setOverrideCursor(Qt.ArrowCursor)
+
+    def mousePressEvent(self, event):
+        if event.button() == Qt.LeftButton:
+            self.press()
+            self.setStyleSheet(f"background-color : rgb({window.sliderRed.value()},{window.sliderGreen.value()},{window.sliderBlue.value()});\n"
+                               f"border-radius: 3px;"
+                               f"border: 3px solid blue;")
+
+    def enterEvent(self, event):
+        if self.isPressed:
+            self.setStyleSheet(f"background-color : rgb({window.sliderRed.value()},{window.sliderGreen.value()},{window.sliderBlue.value()});\n"
+                               f"border-radius: 3px;"
+                               f"border: 3px solid blue;")
+
+    def leaveEvent(self, event):
+        if self.isPressed:
+            self.setStyleSheet(f"background-color : white;\n"
+                               f"border-radius: 1px;"
+                               f"border: 1px solid black;")
+
+            # window.valRed.setValue(window.sliderRed.value())
+            # window.valGreen.setValue(window.sliderGreen.value())
+            # window.valBlue.setValue(window.sliderBlue.value())
+
+
+
 def led_clicked(indice, leds):
     """
     Gère les clicks de leds en changeant leur couleur
@@ -130,25 +170,6 @@ def led_clicked(indice, leds):
         leds[indice].button.setStyleSheet(f"background-color : white;"
                                           f"border-radius: 3px;")
     leds[indice].isLocked = not leds[indice].isLocked
-
-
-class MouseCheck(threading.Thread):
-
-    def __init__(self):
-        threading.Thread.__init__(self)
-        self.isPressed = False
-
-
-    def on_click(self, x, y, button, pressed):
-        if pressed and str(button) == 'left':
-            self.isPressed = True
-        else:
-            self.isPressed = False
-
-
-    def run(self):
-        with mouse.Listener(on_click=self.on_click) as listener:
-            listener.join()
 
 
 # couleurs
@@ -462,8 +483,6 @@ if __name__ == "__main__":
 
     connectionAttempt = ConnectionAttempt(ip_address, username, password)
     connectionAttempt.start()
-    mouseCheck = MouseCheck()
-    mouseCheck.start()
 
     # fenêtre
 
@@ -475,33 +494,38 @@ if __name__ == "__main__":
     window.setStyleSheet(
         f"background-color : rgb({0},{0},{0})")
 
-    ledsButton = [window.ledButton1, window.ledButton2, window.ledButton3, window.ledButton4, window.ledButton5,
-                  window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10,
-                  window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15,
-                  window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20,
-                  window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25,
-                  window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30,
-                  window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35,
-                  window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40,
-                  window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45,
-                  window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50,
-                  window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55,
-                  window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60,
-                  window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65,
-                  window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70,
-                  window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75,
-                  window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80,
-                  window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85,
-                  window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90,
-                  window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95,
-                  window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100,
-                  window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104,
-                  window.ledButton105,
-                  window.ledButton106, window.ledButton107, window.ledButton108]
+    button = QPushButton("Trigger event!")
+    button.installEventFilter(button)
+    window.buttonLayout.addWidget(button)
 
+    # ledsButton = [window.ledButton1, window.ledButton2, window.ledButton3, window.ledButton4, window.ledButton5,
+    #               window.ledButton6, window.ledButton7, window.ledButton8, window.ledButton9, window.ledButton10,
+    #               window.ledButton11, window.ledButton12, window.ledButton13, window.ledButton14, window.ledButton15,
+    #               window.ledButton16, window.ledButton17, window.ledButton18, window.ledButton19, window.ledButton20,
+    #               window.ledButton21, window.ledButton22, window.ledButton23, window.ledButton24, window.ledButton25,s
+    #               window.ledButton26, window.ledButton27, window.ledButton28, window.ledButton29, window.ledButton30,
+    #               window.ledButton31, window.ledButton32, window.ledButton33, window.ledButton34, window.ledButton35,
+    #               window.ledButton36, window.ledButton37, window.ledButton38, window.ledButton39, window.ledButton40,
+    #               window.ledButton41, window.ledButton42, window.ledButton43, window.ledButton44, window.ledButton45,
+    #               window.ledButton46, window.ledButton47, window.ledButton48, window.ledButton49, window.ledButton50,
+    #               window.ledButton51, window.ledButton52, window.ledButton53, window.ledButton54, window.ledButton55,
+    #               window.ledButton56, window.ledButton57, window.ledButton58, window.ledButton59, window.ledButton60,
+    #               window.ledButton61, window.ledButton62, window.ledButton63, window.ledButton64, window.ledButton65,
+    #               window.ledButton66, window.ledButton67, window.ledButton68, window.ledButton69, window.ledButton70,
+    #               window.ledButton71, window.ledButton72, window.ledButton73, window.ledButton74, window.ledButton75,
+    #               window.ledButton76, window.ledButton77, window.ledButton78, window.ledButton79, window.ledButton80,
+    #               window.ledButton81, window.ledButton82, window.ledButton83, window.ledButton84, window.ledButton85,
+    #               window.ledButton86, window.ledButton87, window.ledButton88, window.ledButton89, window.ledButton90,
+    #               window.ledButton91, window.ledButton92, window.ledButton93, window.ledButton94, window.ledButton95,
+    #               window.ledButton96, window.ledButton97, window.ledButton98, window.ledButton99, window.ledButton100,
+    #               window.ledButton101, window.ledButton102, window.ledButton103, window.ledButton104,
+    #               window.ledButton105,
+    #               window.ledButton106, window.ledButton107, window.ledButton108]
+    #
+    # leds = []
+    # for led in ledsButton:
+    #     leds.append(LedButton(led))
     leds = []
-    for led in ledsButton:
-        leds.append(LedButton(led))
 
     window.sliderRed.setMaximum(255)
     window.sliderGreen.setMaximum(255)
@@ -537,6 +561,5 @@ if __name__ == "__main__":
 
     # arrêt du programme
 
-    mouseCheck.join()
     connectionAttempt.isConnected = True
     connectionAttempt.join()
