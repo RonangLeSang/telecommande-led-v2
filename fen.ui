@@ -183,7 +183,7 @@ border-radius: 20px;</string>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="buttonLayout"/>
+       <layout class="QGridLayout" name="buttonLayout"/>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_6">

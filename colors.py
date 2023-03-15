@@ -9,5 +9,3 @@ def get_police_color(middleGrey: int):
         return 0
     else:
         return 255
-
-

@@ -44,4 +44,3 @@ def closest_pantone(rgb):
                 min_dist = dist
                 rep = color_pantone
     return rep
-
