@@ -34,7 +34,7 @@ class ConnectionAttempt(threading.Thread):
         while not self.isConnected:
             connectionWait = ConnectionWait()
             connectionWait.start()
-            if not connect(ip_address, username, password, connectionWait):
+            if not connect(self.ip_address, username, password, connectionWait):
                 time.sleep(5)
             else:
                 self.isConnected = True
@@ -83,7 +83,7 @@ def connect(ip_address, username, password, connectionWait):
         remote_connection = ssh_client.invoke_shell()
         connectionWait.stop = True
         connectionWait.join()
-        connected()
+        connected(ip_address)
         return True
     except:
         connectionWait.stop = True
@@ -225,7 +225,7 @@ def not_connected():
     window.connectionStatus.setText("échec de la connection")
 
 
-def connected():
+def connected(ip_address):
     """
     Affiche la réussite de connection sur l'écran
     """
@@ -353,7 +353,6 @@ def modif_frame(leds, savedFrames, indice):
     :param leds:
     :param save:
     :param indice:
-    :return:
     """
     frame = []
     for led in leds:
@@ -385,36 +384,8 @@ def load():
     pass
 
 
-if __name__ == "__main__":
-
-    # déclaration des variables
-
-    global savedFrames
-    global currentFrame
-    global ip_address
-    currentFrame = 0
-    savedFrames = []
-
-    ip_address = "192.168.1.53"
-    username = "pi"
-    password = "terrasnet"
-
-    # démarrage des threads
-
-    connectionAttempt = ConnectionAttempt(ip_address, username, password)
-    connectionAttempt.start()
-
-    # fenêtre
-
-    loader = QUiLoader()
-    app = QtWidgets.QApplication(sys.argv)
-    window = loader.load("fen.ui", None)
-    window.show()
-
-    window.setStyleSheet(
-        f"background-color : rgb({0},{0},{0})")
-
-    leds = load_setup(f"ressources\\setup\\telero.txt", window.sliderRed, window.sliderGreen, window.sliderBlue, window)
+def setup_window():
+    window.setStyleSheet(f"background-color : rgb({0},{0},{0})")
 
     window.sliderRed.setMaximum(255)
     window.sliderGreen.setMaximum(255)
@@ -442,6 +413,36 @@ if __name__ == "__main__":
     window.nextButton.clicked.connect(next_frame)
     window.saveButton.clicked.connect(save)
     window.loadButton.clicked.connect(load)
+
+
+if __name__ == "__main__":
+
+    # déclaration des variables
+
+    global savedFrames
+    global currentFrame
+    currentFrame = 0
+    savedFrames = []
+
+    ip_address = "192.168.1.53"
+    username = "pi"
+    password = "terrasnet"
+
+    # démarrage des threads
+
+    connectionAttempt = ConnectionAttempt(ip_address, username, password)
+    connectionAttempt.start()
+
+    # fenêtre
+
+    loader = QUiLoader()
+    app = QtWidgets.QApplication(sys.argv)
+    window = loader.load("fen.ui", None)
+    window.show()
+
+    leds = load_setup(f"ressources\\setup\\telero.txt", window.sliderRed, window.sliderGreen, window.sliderBlue, window)
+
+    setup_window()
 
     app.exec()
 
