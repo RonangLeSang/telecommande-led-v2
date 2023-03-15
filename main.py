@@ -282,7 +282,7 @@ def quit_hyperion():
 def clean_boxes(leds):
     for i in range(0, len(leds)):
         if leds[i].isLocked:
-            led_clicked(i, leds)
+            leds[i].color_your_button()
 
 
 def back_frame(leds):
@@ -366,7 +366,7 @@ def modif_frame(leds, savedFrames, indice):
 def display_frame(leds):
     for led in leds:
         ledColor = hex_to_rgb(led.color)
-        led.button.setStyleSheet(f"border-radius: 3px;"
+        led.setStyleSheet(f"border-radius: 3px;"
                                  f"border: 2px solid blue;"
                                  f"outline: solid;"
                                  f"background-color: rgb({ledColor[0]},{ledColor[1]}, {ledColor[2]});")
@@ -392,8 +392,6 @@ if __name__ == "__main__":
     global savedFrames
     global currentFrame
     global ip_address
-    global isPressed
-    isPressed = False
     currentFrame = 0
     savedFrames = []
 

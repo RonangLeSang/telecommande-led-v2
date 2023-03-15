@@ -1,7 +1,16 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFrame, QApplication
 
+from Pressed import get_is_pressed, switch_is_pressed
 from conversions import rgb_to_hex
+
+
+def press():
+    switch_is_pressed()
+    if get_is_pressed():
+        QApplication.setOverrideCursor(Qt.CrossCursor)
+    else:
+        QApplication.setOverrideCursor(Qt.ArrowCursor)
 
 
 class ColorButton(QFrame):
@@ -19,13 +28,6 @@ class ColorButton(QFrame):
                            f"border-radius: 1px;"
                            f"border: 1px solid black;")
 
-    def press(self):
-        self.isPressed = not self.isPressed
-        if self.isPressed:
-            QApplication.setOverrideCursor(Qt.CrossCursor)
-        else:
-            QApplication.setOverrideCursor(Qt.ArrowCursor)
-
     def color_your_button(self):
         self.isLocked = not self.isLocked
         if self.isLocked:
@@ -41,17 +43,17 @@ class ColorButton(QFrame):
 
     def mousePressEvent(self, event):
         if event.button() == Qt.LeftButton and not self.isHovered:
-            self.press()
+            press()
             self.color_your_button()
         else:
             self.isHovered = False
-            self.press()
+            press()
 
     def enterEvent(self, event):
-        if self.isPressed:
+        if get_is_pressed():
             self.isHovered = True
             self.color_your_button()
 
     def leaveEvent(self, event):
-        if self.isPressed:
+        if get_is_pressed():
             self.isHovered = False
