@@ -32,7 +32,6 @@ def next_frame(leds, window):
     """
     Affiche la frame d'animation suivante
     """
-    print("oui")
     currentFrame = get_current_frame()
     savedFrames = get_saved_frames()
     change_frame(currentFrame, savedFrames, leds, window)
