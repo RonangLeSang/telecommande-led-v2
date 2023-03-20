@@ -1,5 +1,4 @@
 import json
-from scipy.spatial import distance
 
 
 def rgb_to_hex(r : int, g : int, b : int):
@@ -27,20 +26,16 @@ def hex_to_rgb(hex : hex):
     return tuple(rgb)
 
 
-def closest_pantone(rgb):
+def pantone_to_rgb(code_pantone, window):
     """
-    Renvoi le code pantone le plus proche du tuple rgb en paramètre à l'aide d'un dictionnaire
-    :param rgb: tuple
-    :return rep: str code Pantone
+    Retourne un tuple rgb à partir du code Pantone correspondant à l'aide d'un dictionnaire
+    :param window: QWindow
+    :param code_pantone: str
+    :return (rgb): tuple rgb
     """
-    with open("results.json", "r") as file:
+    with open("../ressources/colors/results.json", "r") as file:
         pantone = json.load(file)
-        min_dist = 2555555
-        pantoneKeys = pantone.keys()
-        rep = min(pantoneKeys)
-        for color_pantone in pantoneKeys:
-            dist = distance.euclidean(tuple(pantone[color_pantone]), rgb)
-            if dist < min_dist:
-                min_dist = dist
-                rep = color_pantone
-    return rep
+    if code_pantone in pantone.keys():
+        return pantone[code_pantone]
+    else:
+        return tuple([window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value()])

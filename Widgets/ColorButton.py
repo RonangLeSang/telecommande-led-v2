@@ -1,8 +1,8 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QFrame, QApplication
 
-from Pressed import get_is_pressed, switch_is_pressed
-from conversions import rgb_to_hex
+from Memory.Pressed import get_is_pressed, switch_is_pressed
+from Colors.conversions import rgb_to_hex
 
 
 def press():

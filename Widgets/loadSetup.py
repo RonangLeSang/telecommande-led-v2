@@ -1,5 +1,5 @@
 
-from ColorButton import ColorButton
+from Widgets.ColorButton import ColorButton
 
 
 def get_position(setup):
