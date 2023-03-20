@@ -198,7 +198,11 @@ border-radius: 20px;</string>
          </widget>
         </item>
         <item>
-         <widget class="QSpinBox" name="timeChoose"/>
+         <widget class="QSpinBox" name="timeChoose">
+          <property name="styleSheet">
+           <string notr="true">background-color: white;</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="msLabel">

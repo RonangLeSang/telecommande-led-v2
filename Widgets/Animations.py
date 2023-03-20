@@ -1,3 +1,7 @@
+import json
+
+from PySide6.QtWidgets import QFileDialog
+
 from Memory.Pressed import get_current_frame, get_saved_frames, set_saved_frames, set_current_frame
 from Colors.conversions import rgb_to_hex, hex_to_rgb
 
@@ -59,18 +63,21 @@ def change_frame(currentFrame, savedFrames, leds, window):
         modif_frame(leds, savedFrames, currentFrame, window)
 
 
-def save():
+def save(saveButton):
     """
     Sauvegarde un fichier d'animation
     """
-    pass
+    fileName = QFileDialog.getSaveFileName(saveButton, "Save animation", "ressources/saves", "Text Files (*.txt)")
+    print(fileName[0])
+    with open(fileName[0], "w") as file:
+        file.write(json.dumps(get_saved_frames()))
 
 
 def save_frame(leds, save, window):
     """
     Sauvegarde une frame d'animation
     """
-    frame = []
+    frame = [window.timeChoose.value()]
     for led in leds:
         if not led.isLocked:
             led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())

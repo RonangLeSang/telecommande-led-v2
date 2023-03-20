@@ -34,6 +34,7 @@ def setup_window():
     window.sliderGreen.valueChanged.connect(changeBack)
     window.sliderBlue.valueChanged.connect(changeBack)
 
+    window.timeChoose.setMaximum(3600000)
     window.valRed.setMaximum(255)
     window.valGreen.setMaximum(255)
     window.valBlue.setMaximum(255)
@@ -52,7 +53,7 @@ def setup_window():
 
     window.backButton.clicked.connect(partial(back_frame, leds, window))
     window.nextButton.clicked.connect(partial(next_frame, leds, window))
-    window.saveButton.clicked.connect(save)
+    window.saveButton.clicked.connect(partial(save, window.saveButton))
     window.loadButton.clicked.connect(load)
 
 
