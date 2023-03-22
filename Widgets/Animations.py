@@ -98,7 +98,7 @@ def modif_frame(leds, savedFrames, indice, window):
         if not led.isLocked:
             led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
         frame.append(led.color)
-    # savedFrames[indice] = frame
+    savedFrames[indice] = frame
 
 
 def display_frame(leds):
