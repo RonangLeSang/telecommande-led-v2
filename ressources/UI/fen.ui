@@ -375,11 +375,22 @@ border: 0px;</string>
     <property name="title">
      <string>couleur</string>
     </property>
-    <addaction name="separator"/>
+    <addaction name="actionins_rer_une_animation"/>
+    <addaction name="actionsupprimer_la_frame"/>
    </widget>
    <addaction name="menucouleur"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionins_rer_une_animation">
+   <property name="text">
+    <string>insérer une animation</string>
+   </property>
+  </action>
+  <action name="actionsupprimer_la_frame">
+   <property name="text">
+    <string>supprimer la frame</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
