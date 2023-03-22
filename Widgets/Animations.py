@@ -26,7 +26,7 @@ def back_frame(leds, window):
     savedFrames = get_saved_frames()
     change_frame(currentFrame, savedFrames, leds, window)
     if currentFrame > 0:
-        load_frame(savedFrames[currentFrame - 1][1:], leds)
+        load_frame(savedFrames[currentFrame - 1], leds)
         display_frame(leds)
         currentFrame -= 1
         indicate_page(window, savedFrames, currentFrame)
@@ -42,7 +42,7 @@ def next_frame(leds, window):
     if currentFrame == len(savedFrames)-1:
         clean_boxes(leds)
     else:
-        load_frame(savedFrames[currentFrame + 1][1:], leds)
+        load_frame(savedFrames[currentFrame + 1], leds)
         display_frame(leds)
     currentFrame += 1
     indicate_page(window, savedFrames, currentFrame)
@@ -111,7 +111,7 @@ def display_frame(leds):
 
 
 def load_frame(frame, leds):
-    for i in range(0, len(leds)):
+    for i in range(1, len(leds)):
         leds[i].color = frame[i]
         leds[i].isLocked = True
 
