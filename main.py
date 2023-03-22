@@ -54,7 +54,7 @@ def setup_window():
     window.backButton.clicked.connect(partial(back_frame, leds, window))
     window.nextButton.clicked.connect(partial(next_frame, leds, window))
     window.saveButton.clicked.connect(partial(save, window.saveButton))
-    window.loadButton.clicked.connect(load)
+    window.loadButton.clicked.connect(partial(load, window, window.loadButton, leds))
 
 
 if __name__ == "__main__":

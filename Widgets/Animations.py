@@ -26,7 +26,7 @@ def back_frame(leds, window):
     savedFrames = get_saved_frames()
     change_frame(currentFrame, savedFrames, leds, window)
     if currentFrame > 0:
-        load_frame(savedFrames[currentFrame - 1], leds)
+        load_frame(savedFrames[currentFrame - 1][1:], leds)
         display_frame(leds)
         currentFrame -= 1
         indicate_page(window, savedFrames, currentFrame)
@@ -42,7 +42,7 @@ def next_frame(leds, window):
     if currentFrame == len(savedFrames)-1:
         clean_boxes(leds)
     else:
-        load_frame(savedFrames[currentFrame + 1], leds)
+        load_frame(savedFrames[currentFrame + 1][1:], leds)
         display_frame(leds)
     currentFrame += 1
     indicate_page(window, savedFrames, currentFrame)
@@ -67,10 +67,12 @@ def save(saveButton):
     """
     Sauvegarde un fichier d'animation
     """
-    fileName = QFileDialog.getSaveFileName(saveButton, "Save animation", "ressources/saves", "Text Files (*.txt)")
-    print(fileName[0])
-    with open(fileName[0], "w") as file:
-        file.write(json.dumps(get_saved_frames()))
+    try:
+        fileName = QFileDialog.getSaveFileName(saveButton, "Save animation", "ressources/saves", "Json Files (*.json)")
+        with open(fileName[0], "w") as file:
+            file.write(json.dumps(get_saved_frames()))
+    except FileNotFoundError:
+        pass
 
 
 def save_frame(leds, save, window):
@@ -96,7 +98,7 @@ def modif_frame(leds, savedFrames, indice, window):
         if not led.isLocked:
             led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
         frame.append(led.color)
-    savedFrames[indice] = frame
+    # savedFrames[indice] = frame
 
 
 def display_frame(leds):
@@ -114,8 +116,16 @@ def load_frame(frame, leds):
         leds[i].isLocked = True
 
 
-def load():
+def load(window, loadButton, leds):
     """
     Charge un fichier d'animation
     """
-    pass
+    try:
+        fileName = QFileDialog.getOpenFileName(loadButton, "Load animation", "ressources/saves", "Json Files (*.json)")
+        with open(fileName[0], "r") as file:
+            #print(file.readline())
+            set_saved_frames(json.load(file))
+        set_current_frame(len(get_saved_frames())-1)
+        next_frame(leds, window)
+    except FileNotFoundError:
+        pass
