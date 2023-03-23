@@ -4,9 +4,10 @@ from functools import partial
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 
-from Widgets.Animations import back_frame, next_frame, save, load
+from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame
 from Widgets.ColorWidget import change_bg_hex, change_bg_pantone, change_bg_sliders
 from SSH.Connection import ConnectionAttempt
+
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
 from Widgets.loadSetup import load_setup
 
@@ -55,6 +56,8 @@ def setup_window():
     window.nextButton.clicked.connect(partial(next_frame, leds, window))
     window.saveButton.clicked.connect(partial(save, window.saveButton))
     window.loadButton.clicked.connect(partial(load, window, window.loadButton, leds))
+
+    window.suppressFrame.triggered.connect(partial(suppress_frame, window, leds))
 
 
 if __name__ == "__main__":

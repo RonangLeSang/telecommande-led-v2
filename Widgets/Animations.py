@@ -93,7 +93,7 @@ def modif_frame(leds, savedFrames, indice, window):
     :param leds:
     :param indice:
     """
-    frame = []
+    frame = [window.timeChoose.value()]
     for led in leds:
         if not led.isLocked:
             led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
@@ -124,9 +124,20 @@ def load(window, loadButton, leds):
     try:
         fileName = QFileDialog.getOpenFileName(loadButton, "Load animation", "ressources/saves", "Json Files (*.json)")
         with open(fileName[0], "r") as file:
-            #print(file.readline())
             set_saved_frames(json.load(file))
         set_current_frame(len(get_saved_frames())-1)
         next_frame(leds, window)
     except FileNotFoundError:
         pass
+
+
+def suppress_frame(window, leds):
+    savedFrames = get_saved_frames()
+    currentFrame = get_current_frame()
+    savedFrames.pop(get_current_frame())
+    set_saved_frames(savedFrames)
+    if currentFrame > 0:
+        load_frame(savedFrames[currentFrame - 1], leds, window)
+        display_frame(leds)
+        currentFrame -= 1
+        indicate_page(window, savedFrames, currentFrame)

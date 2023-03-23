@@ -30,7 +30,7 @@ def set_button_color(middleGrey, window):
     label_color(abs(policeColor - 255), window)
 
     buttons = [window.colorLaunch, window.launchHyperyon, window.quitHyperyon, window.backButton, window.nextButton,
-               window.saveButton, window.loadButton]
+               window.saveButton, window.loadButton, window.menuCouleur]
 
     for button in buttons:
         button.setStyleSheet(

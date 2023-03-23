@@ -371,24 +371,36 @@ border: 0px;</string>
      <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menucouleur">
+   <widget class="QMenu" name="menuCouleur">
     <property name="title">
      <string>couleur</string>
     </property>
-    <addaction name="actionins_rer_une_animation"/>
-    <addaction name="actionsupprimer_la_frame"/>
+    <addaction name="insertAnimation"/>
+    <addaction name="suppressFrame"/>
+    <addaction name="synchroniser"/>
+    <addaction name="changeID"/>
    </widget>
-   <addaction name="menucouleur"/>
+   <addaction name="menuCouleur"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionins_rer_une_animation">
+  <action name="insertAnimation">
    <property name="text">
     <string>insérer une animation</string>
    </property>
   </action>
-  <action name="actionsupprimer_la_frame">
+  <action name="suppressFrame">
    <property name="text">
     <string>supprimer la frame</string>
+   </property>
+  </action>
+  <action name="synchroniser">
+   <property name="text">
+    <string>synchroniser</string>
+   </property>
+  </action>
+  <action name="changeID">
+   <property name="text">
+    <string>changer de récepteur</string>
    </property>
   </action>
  </widget>
