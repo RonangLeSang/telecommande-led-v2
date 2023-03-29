@@ -22,7 +22,7 @@ def get_rgb():
            f"{window.valBlue.value()}\n"
 
 
-def setup_window():
+def setup_window(leds):
     window.setStyleSheet(f"background-color : rgb({0},{0},{0})")
 
     window.sliderRed.setMaximum(255)
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     leds = load_setup(f"ressources\\setup\\telero.txt", window.sliderRed, window.sliderGreen, window.sliderBlue, window)
 
-    setup_window()
+    setup_window(leds)
 
     app.exec()
 

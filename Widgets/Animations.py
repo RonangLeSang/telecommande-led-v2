@@ -7,7 +7,7 @@ from Colors.conversions import rgb_to_hex, hex_to_rgb
 
 
 def indicate_page(window, savedFrames, currentFrame):
-    window.pageIndicator.setText(f"frame : {currentFrame+1}/{len(savedFrames)+1}")
+    window.pageIndicator.setText(f"frame : {currentFrame + 1}/{len(savedFrames) + 1}")
     set_saved_frames(savedFrames)
     set_current_frame(currentFrame)
 
@@ -39,7 +39,7 @@ def next_frame(leds, window):
     currentFrame = get_current_frame()
     savedFrames = get_saved_frames()
     change_frame(currentFrame, savedFrames, leds, window)
-    if currentFrame == len(savedFrames)-1:
+    if currentFrame == len(savedFrames) - 1:
         clean_boxes(leds)
     else:
         load_frame(savedFrames[currentFrame + 1], leds, window)
@@ -57,10 +57,17 @@ def change_frame(currentFrame, savedFrames, leds, window):
     :param savedFrames:
     :return:
     """
-    if currentFrame == len(savedFrames):
-        save_frame(leds, savedFrames, window)
-    else:
-        modif_frame(leds, savedFrames, currentFrame, window)
+    try:
+        if savedFrames[currentFrame - 1][0] != -1:
+            if currentFrame == len(savedFrames):
+                save_frame(leds, savedFrames, window)
+            else:
+                modif_frame(leds, savedFrames, currentFrame, window)
+    except IndexError:
+        if currentFrame == len(savedFrames):
+            save_frame(leds, savedFrames, window)
+        else:
+            modif_frame(leds, savedFrames, currentFrame, window)
 
 
 def save(saveButton):
@@ -102,19 +109,35 @@ def modif_frame(leds, savedFrames, indice, window):
 
 
 def display_frame(leds):
+    if leds[0].color != "anim":
+        for led in leds:
+            ledColor = hex_to_rgb(led.color)
+            led.setStyleSheet(f"border-radius: 3px;"
+                              f"border: 2px solid blue;"
+                              f"outline: solid;"
+                              f"background-color: rgb({ledColor[0]}, {ledColor[1]}, {ledColor[2]});")
+    else:
+        display_anim(leds)
+
+
+def display_anim(leds):
     for led in leds:
-        ledColor = hex_to_rgb(led.color)
         led.setStyleSheet(f"border-radius: 3px;"
-                                 f"border: 2px solid blue;"
-                                 f"outline: solid;"
-                                 f"background-color: rgb({ledColor[0]},{ledColor[1]}, {ledColor[2]});")
+                          f"border: 2px solid green;"
+                          f"outline: solid;"
+                          f"background-color: white;")
 
 
 def load_frame(frame, leds, window):
-    window.timeChoose.setValue(frame[0])
-    for i in range(1, len(leds)):
-        leds[i].color = frame[i]
-        leds[i].isLocked = True
+    if frame[0] != -1:
+        window.timeChoose.setValue(frame[0])
+        for i in range(1, len(leds)):
+            leds[i-1].color = frame[i]
+            leds[i-1].isLocked = True
+    else:
+        for i in range(1, len(leds)):
+            leds[i-1].color = "anim"
+            leds[i-1].isLocked = True
 
 
 def load(window, loadButton, leds):
@@ -125,7 +148,7 @@ def load(window, loadButton, leds):
         fileName = QFileDialog.getOpenFileName(loadButton, "Load animation", "ressources/saves", "Json Files (*.json)")
         with open(fileName[0], "r") as file:
             set_saved_frames(json.load(file))
-        set_current_frame(len(get_saved_frames())-1)
+        set_current_frame(len(get_saved_frames()) - 1)
         next_frame(leds, window)
     except FileNotFoundError:
         pass
@@ -134,7 +157,7 @@ def load(window, loadButton, leds):
 def suppress_frame(window, leds):
     savedFrames = get_saved_frames()
     currentFrame = get_current_frame()
-    savedFrames.pop(get_current_frame())
+    savedFrames.pop(currentFrame)
     set_saved_frames(savedFrames)
     if currentFrame > 0:
         load_frame(savedFrames[currentFrame - 1], leds, window)

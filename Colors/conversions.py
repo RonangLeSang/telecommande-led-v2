@@ -33,7 +33,7 @@ def pantone_to_rgb(code_pantone, window):
     :param code_pantone: str
     :return (rgb): tuple rgb
     """
-    with open("../ressources/colors/results.json", "r") as file:
+    with open("ressources/colors/results.json", "r") as file:
         pantone = json.load(file)
     if code_pantone in pantone.keys():
         return pantone[code_pantone]
