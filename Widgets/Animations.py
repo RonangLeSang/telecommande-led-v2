@@ -1,6 +1,7 @@
 import json
 
-from PySide6.QtWidgets import QFileDialog
+from PyQt5.QtWidgets import QWidget
+from PySide6.QtWidgets import QFileDialog, QPushButton
 
 from Memory.Pressed import get_current_frame, get_saved_frames, set_saved_frames, set_current_frame
 from Colors.conversions import rgb_to_hex, hex_to_rgb
@@ -51,19 +52,15 @@ def next_frame(leds, window):
 def change_frame(currentFrame, savedFrames, leds, window):
     """
     Gère la sauvegarde et la modification de frames en fonction de l'indice et de la longueur de la liste
-    :param leds:
-    :param window:
-    :param currentFrame:
-    :param savedFrames:
-    :return:
     """
     try:
-        if savedFrames[currentFrame - 1][0] != -1:
+        if savedFrames[currentFrame][0] != -1:
             if currentFrame == len(savedFrames):
                 save_frame(leds, savedFrames, window)
             else:
                 modif_frame(leds, savedFrames, currentFrame, window)
     except IndexError:
+        print("attention")
         if currentFrame == len(savedFrames):
             save_frame(leds, savedFrames, window)
         else:
@@ -131,10 +128,11 @@ def display_anim(leds):
 def load_frame(frame, leds, window):
     if frame[0] != -1:
         window.timeChoose.setValue(frame[0])
-        for i in range(1, len(leds)):
-            leds[i-1].color = frame[i]
-            leds[i-1].isLocked = True
+        for i in range(0, len(leds)):
+            leds[i].color = frame[i+1]
+            leds[i].isLocked = True
     else:
+        print("ANIMATION --------------------------------------------------------------------------------------------------------")
         for i in range(1, len(leds)):
             leds[i-1].color = "anim"
             leds[i-1].isLocked = True
@@ -157,10 +155,30 @@ def load(window, loadButton, leds):
 def suppress_frame(window, leds):
     savedFrames = get_saved_frames()
     currentFrame = get_current_frame()
-    savedFrames.pop(currentFrame)
-    set_saved_frames(savedFrames)
-    if currentFrame > 0:
-        load_frame(savedFrames[currentFrame - 1], leds, window)
-        display_frame(leds)
-        currentFrame -= 1
-        indicate_page(window, savedFrames, currentFrame)
+    try:
+        savedFrames.pop(currentFrame)
+        set_saved_frames(savedFrames)
+        if currentFrame > 0:
+            load_frame(savedFrames[currentFrame - 1], leds, window)
+            display_frame(leds)
+            currentFrame -= 1
+            indicate_page(window, savedFrames, currentFrame)
+    except IndexError:
+        pass
+
+
+def insert_animation(window, leds):
+    try:
+        fileName = QFileDialog.getOpenFileName(None, "Load animation", "ressources/saves", "Json Files (*.json)")
+        with open(fileName[0], "r"):
+            savedFrames = get_saved_frames()
+            if len(savedFrames) == get_current_frame():
+                savedFrames.append([-1, fileName[0]])
+            else:
+                savedFrames[get_current_frame()] = [-1, fileName[0]]
+            for led in leds:
+                led.isLocked = True
+            next_frame(leds, window)
+    except FileNotFoundError:
+        pass
+

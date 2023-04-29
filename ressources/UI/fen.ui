@@ -364,7 +364,19 @@ border: 0px;</string>
      <height>26</height>
     </rect>
    </property>
+   <property name="maximumSize">
+    <size>
+     <width>16777213</width>
+     <height>16777215</height>
+    </size>
+   </property>
    <widget class="QMenu" name="menuCouleur">
+    <property name="styleSheet">
+     <string notr="true">background-color: white;
+padding: 15px;
+color:black;
+border-radius: 20px;</string>
+    </property>
     <property name="title">
      <string>couleur</string>
     </property>

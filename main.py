@@ -4,10 +4,9 @@ from functools import partial
 from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
 
-from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame
+from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame, insert_animation
 from Widgets.ColorWidget import change_bg_hex, change_bg_pantone, change_bg_sliders
 from SSH.Connection import ConnectionAttempt
-
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
 from Widgets.loadSetup import load_setup
 
@@ -23,7 +22,8 @@ def get_rgb():
 
 
 def setup_window(leds):
-    window.setStyleSheet(f"background-color : rgb({0},{0},{0})")
+    window.setStyleSheet(f"background-color : black")
+    # window.menuCouleur.setStyleSheet(f"background-color : white")
 
     window.sliderRed.setMaximum(255)
     window.sliderGreen.setMaximum(255)
@@ -58,6 +58,7 @@ def setup_window(leds):
     window.loadButton.clicked.connect(partial(load, window, window.loadButton, leds))
 
     window.suppressFrame.triggered.connect(partial(suppress_frame, window, leds))
+    window.insertAnimation.triggered.connect(partial(insert_animation, window, leds))
 
 
 if __name__ == "__main__":
