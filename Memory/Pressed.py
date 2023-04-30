@@ -2,6 +2,7 @@ global isPressed
 global currentFrame
 global savedFrames
 global ssh_client
+global setup
 currentFrame = 0
 savedFrames = []
 isPressed = False
@@ -45,3 +46,13 @@ def set_saved_frames(savedF):
 def get_saved_frames():
     global savedFrames
     return savedFrames
+
+
+def set_setup(newSetup):
+    global setup
+    setup = newSetup
+
+
+def get_setup():
+    global setup
+    return setup

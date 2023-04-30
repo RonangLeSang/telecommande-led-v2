@@ -80,7 +80,7 @@ if __name__ == "__main__":
 
     window.show()
 
-    leds = load_setup(f"ressources\\setup\\telero.txt", window.sliderRed, window.sliderGreen, window.sliderBlue, window)
+    leds = load_setup(window.sliderRed, window.sliderGreen, window.sliderBlue, window)
 
     setup_window(leds)
 

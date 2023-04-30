@@ -1,4 +1,4 @@
-
+from Memory.Pressed import set_setup
 from Widgets.ColorButton import ColorButton
 
 
@@ -20,9 +20,23 @@ def setup_grid(positions, sliderR, sliderG, sliderB, window):
     return buttonsList
 
 
-def load_setup(file=f"ressources\\setup\\telero.txt", sliderR=None, sliderG=None, sliderB=None, window=None):
+def get_last_setup():
+    with open("ressources\\setups\\save.txt", "r") as f:
+        return f.read()
+
+
+def set_last_setup(setup):
+    set_setup(setup)
+    with open("ressources\\setups\\save.txt", "w") as f:
+        return f.write(setup)
+
+
+def load_setup(sliderR=None, sliderG=None, sliderB=None, window=None, file=False):
+    if not file:
+        file = get_last_setup()
+    set_last_setup(file)
     setup = []
-    with open(file) as f:
+    with open(f"ressources\\setups\\{file}\\{file}.txt", "r") as f:
         line = f"foo"
         while line != "":
             line = f.readline()

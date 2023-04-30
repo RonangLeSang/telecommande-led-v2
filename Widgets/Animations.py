@@ -1,9 +1,8 @@
 import json
 
-from PyQt5.QtWidgets import QWidget
-from PySide6.QtWidgets import QFileDialog, QPushButton
+from PySide6.QtWidgets import QFileDialog
 
-from Memory.Pressed import get_current_frame, get_saved_frames, set_saved_frames, set_current_frame
+from Memory.Pressed import get_current_frame, get_saved_frames, set_saved_frames, set_current_frame, get_setup
 from Colors.conversions import rgb_to_hex, hex_to_rgb
 
 
@@ -60,7 +59,6 @@ def change_frame(currentFrame, savedFrames, leds, window):
             else:
                 modif_frame(leds, savedFrames, currentFrame, window)
     except IndexError:
-        print("attention")
         if currentFrame == len(savedFrames):
             save_frame(leds, savedFrames, window)
         else:
@@ -72,7 +70,8 @@ def save(saveButton):
     Sauvegarde un fichier d'animation
     """
     try:
-        fileName = QFileDialog.getSaveFileName(saveButton, "Save animation", "ressources/saves", "Json Files (*.json)")
+        fileName = QFileDialog.getSaveFileName(saveButton, "Save animation", f"ressources\\setups\\{get_setup()}\\"
+                                                                             f"uncompiled", "Json Files (*.json)")
         with open(fileName[0], "w") as file:
             file.write(json.dumps(get_saved_frames()))
     except FileNotFoundError:
@@ -132,7 +131,6 @@ def load_frame(frame, leds, window):
             leds[i].color = frame[i+1]
             leds[i].isLocked = True
     else:
-        print("ANIMATION --------------------------------------------------------------------------------------------------------")
         for i in range(1, len(leds)):
             leds[i-1].color = "anim"
             leds[i-1].isLocked = True
@@ -143,7 +141,8 @@ def load(window, loadButton, leds):
     Charge un fichier d'animation
     """
     try:
-        fileName = QFileDialog.getOpenFileName(loadButton, "Load animation", "ressources/saves", "Json Files (*.json)")
+        fileName = QFileDialog.getOpenFileName(loadButton, "Load animation", f"ressources\\setups\\{get_setup()}\\"
+                                                                             f"uncompiled", "Json Files (*.json)")
         with open(fileName[0], "r") as file:
             set_saved_frames(json.load(file))
         set_current_frame(len(get_saved_frames()) - 1)
@@ -169,7 +168,8 @@ def suppress_frame(window, leds):
 
 def insert_animation(window, leds):
     try:
-        fileName = QFileDialog.getOpenFileName(None, "Load animation", "ressources/saves", "Json Files (*.json)")
+        fileName = QFileDialog.getOpenFileName(None, "Load animation", f"ressources\\setups\\{get_setup()}\\uncompiled",
+                                               "Json Files (*.json)")
         with open(fileName[0], "r"):
             savedFrames = get_saved_frames()
             if len(savedFrames) == get_current_frame():
@@ -181,4 +181,3 @@ def insert_animation(window, leds):
             next_frame(leds, window)
     except FileNotFoundError:
         pass
-
