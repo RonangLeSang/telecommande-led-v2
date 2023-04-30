@@ -1,3 +1,7 @@
+import os
+
+from PySide6.QtWidgets import QFileDialog
+
 from Memory.Pressed import set_setup
 from Widgets.ColorButton import ColorButton
 
@@ -42,3 +46,15 @@ def load_setup(sliderR=None, sliderG=None, sliderB=None, window=None, file=False
             line = f.readline()
             setup.append(line[:-1])
     return setup_grid(get_position(setup), sliderR, sliderG, sliderB, window)
+
+
+def choose_setup(window):
+    try:
+        file = QFileDialog.getExistingDirectory(None, "choose setup", "ressources\\setups")
+        for i in reversed(range(window.buttonLayout.count())):
+            window.buttonLayout.itemAt(i).widget().setParent(None)
+
+        load_setup(window.sliderRed, window.sliderGreen, window.sliderBlue, window,
+                   os.path.basename(os.path.normpath(file)))
+    except FileNotFoundError:
+        pass

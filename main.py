@@ -8,7 +8,7 @@ from Widgets.Animations import back_frame, next_frame, save, load, suppress_fram
 from Widgets.ColorWidget import change_bg_hex, change_bg_pantone, change_bg_sliders
 from SSH.Connection import ConnectionAttempt
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
-from Widgets.loadSetup import load_setup
+from Widgets.loadSetup import load_setup, choose_setup
 
 
 def get_rgb():
@@ -59,6 +59,7 @@ def setup_window(leds):
 
     window.suppressFrame.triggered.connect(partial(suppress_frame, window, leds))
     window.insertAnimation.triggered.connect(partial(insert_animation, window, leds))
+    window.changeID.triggered.connect(partial(choose_setup, window))
 
 
 if __name__ == "__main__":

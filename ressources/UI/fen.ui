@@ -406,7 +406,7 @@ border-radius: 20px;</string>
   </action>
   <action name="changeID">
    <property name="text">
-    <string>changer de récepteur</string>
+    <string>changer de récepteur/setup</string>
    </property>
   </action>
   <action name="actionfade">
