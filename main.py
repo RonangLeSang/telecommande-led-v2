@@ -1,8 +1,9 @@
+import os
 import sys
 
 from functools import partial
-from PySide6 import QtWidgets
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtWidgets import QApplication
 
 from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame, insert_animation
 from Widgets.ColorWidget import change_bg_hex, change_bg_pantone, change_bg_sliders
@@ -23,7 +24,6 @@ def get_rgb():
 
 def setup_window(leds):
     window.setStyleSheet(f"background-color : black")
-    # window.menuCouleur.setStyleSheet(f"background-color : white")
 
     window.sliderRed.setMaximum(255)
     window.sliderGreen.setMaximum(255)
@@ -73,7 +73,9 @@ if __name__ == "__main__":
     # fenêtre
 
     loader = QUiLoader()
-    app = QtWidgets.QApplication(sys.argv)
+    app = QApplication.instance()
+    if not app:
+        app = QApplication(sys.argv)
     window = loader.load("ressources\\UI\\fen.ui", None)
 
     connectionAttempt = ConnectionAttempt(ip_address, username, password, window)
@@ -81,7 +83,7 @@ if __name__ == "__main__":
 
     window.show()
 
-    leds = load_setup(window.sliderRed, window.sliderGreen, window.sliderBlue, window)
+    leds = load_setup(window)
 
     setup_window(leds)
 

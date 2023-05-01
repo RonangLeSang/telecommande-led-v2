@@ -1,6 +1,7 @@
 import os
+from functools import partial
 
-from PySide6.QtWidgets import QFileDialog
+from PySide6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QVBoxLayout, QComboBox, QLineEdit
 
 from Memory.Pressed import set_setup
 from Widgets.ColorButton import ColorButton
@@ -35,7 +36,8 @@ def set_last_setup(setup):
         return f.write(setup)
 
 
-def load_setup(sliderR=None, sliderG=None, sliderB=None, window=None, file=False):
+def load_setup(window=None, file=False):
+    clear_setup(window)
     if not file:
         file = get_last_setup()
     set_last_setup(file)
@@ -45,16 +47,56 @@ def load_setup(sliderR=None, sliderG=None, sliderB=None, window=None, file=False
         while line != "":
             line = f.readline()
             setup.append(line[:-1])
-    return setup_grid(get_position(setup), sliderR, sliderG, sliderB, window)
+    return setup_grid(get_position(setup), window.sliderRed, window.sliderGreen, window.sliderBlue, window)
+
+
+def clear_setup(window):
+    for i in reversed(range(window.buttonLayout.count())):
+        window.buttonLayout.itemAt(i).widget().setParent(None)
+
+
+def load_from_combo(window, combo):
+    load_setup(window, combo.currentText())
+
+
+def display_form(window):
+    formScreen = QWidget()
+    comboSetup = QComboBox()
+    chooseButton = QPushButton("confirmer")
+    nameField = QLineEdit()
+    createButton = QPushButton("créer")
+    cancelButton = QPushButton("annuler")
+
+    folders = next(os.walk('ressources/setups'))[1]
+    for folder in folders:
+        comboSetup.addItem(folder)
+
+    cancelButton.clicked.connect(partial(load_setup, window))
+    chooseButton.clicked.connect(partial(load_from_combo, window, comboSetup))
+    createButton.clicked.connect(partial(create_setup, window))
+
+    formLayout = QVBoxLayout()
+    chooseLayout = QVBoxLayout()
+    createLayout = QVBoxLayout()
+    chooseCreateLayout = QHBoxLayout()
+
+    formScreen.setLayout(formLayout)
+    chooseCreateLayout.addLayout(chooseLayout)
+    chooseCreateLayout.addLayout(createLayout)
+    formLayout.addLayout(chooseCreateLayout)
+
+    chooseLayout.addWidget(comboSetup)
+    chooseLayout.addWidget(chooseButton)
+    createLayout.addWidget(nameField)
+    createLayout.addWidget(createButton)
+    formLayout.addWidget(cancelButton)
+    window.buttonLayout.addWidget(formScreen, 0, 0)
+
+
+def create_setup(window):
+    pass
 
 
 def choose_setup(window):
-    try:
-        file = QFileDialog.getExistingDirectory(None, "choose setup", "ressources\\setups")
-        for i in reversed(range(window.buttonLayout.count())):
-            window.buttonLayout.itemAt(i).widget().setParent(None)
-
-        load_setup(window.sliderRed, window.sliderGreen, window.sliderBlue, window,
-                   os.path.basename(os.path.normpath(file)))
-    except FileNotFoundError:
-        pass
+    clear_setup(window)
+    display_form(window)
