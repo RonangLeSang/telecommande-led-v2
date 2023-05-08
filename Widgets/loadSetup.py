@@ -1,10 +1,6 @@
-import os
-from functools import partial
-
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QVBoxLayout, QComboBox, QLineEdit
-
 from Memory.Pressed import set_setup
 from Widgets.ColorButton import ColorButton
+from Widgets.changeSetup import display_form
 
 
 def get_position(setup):
@@ -57,44 +53,6 @@ def clear_setup(window):
 
 def load_from_combo(window, combo):
     load_setup(window, combo.currentText())
-
-
-def display_form(window):
-    formScreen = QWidget()
-    comboSetup = QComboBox()
-    chooseButton = QPushButton("confirmer")
-    nameField = QLineEdit()
-    createButton = QPushButton("créer")
-    cancelButton = QPushButton("annuler")
-
-    folders = next(os.walk('ressources/setups'))[1]
-    for folder in folders:
-        comboSetup.addItem(folder)
-
-    cancelButton.clicked.connect(partial(load_setup, window))
-    chooseButton.clicked.connect(partial(load_from_combo, window, comboSetup))
-    createButton.clicked.connect(partial(create_setup, window))
-
-    formLayout = QVBoxLayout()
-    chooseLayout = QVBoxLayout()
-    createLayout = QVBoxLayout()
-    chooseCreateLayout = QHBoxLayout()
-
-    formScreen.setLayout(formLayout)
-    chooseCreateLayout.addLayout(chooseLayout)
-    chooseCreateLayout.addLayout(createLayout)
-    formLayout.addLayout(chooseCreateLayout)
-
-    chooseLayout.addWidget(comboSetup)
-    chooseLayout.addWidget(chooseButton)
-    createLayout.addWidget(nameField)
-    createLayout.addWidget(createButton)
-    formLayout.addWidget(cancelButton)
-    window.buttonLayout.addWidget(formScreen, 0, 0)
-
-
-def create_setup(window):
-    pass
 
 
 def choose_setup(window):
