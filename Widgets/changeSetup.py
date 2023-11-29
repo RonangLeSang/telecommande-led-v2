@@ -3,13 +3,16 @@ import Widgets.loadSetup
 
 from functools import partial
 
-from PySide6.QtWidgets import QWidget, QComboBox, QPushButton, QLineEdit, QLabel, QHBoxLayout, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QComboBox, QPushButton, QLineEdit, QLabel, QHBoxLayout, QVBoxLayout, QSpinBox
 
+from Widgets.CreateSetup import display_creation_widget
 
 
 def display_form(window):
     formScreen = QWidget()
     comboSetup = QComboBox()
+    spinHoriz = QSpinBox()
+    spinVert = QSpinBox()
     chooseButton = QPushButton("confirmer")
     nameField = QLineEdit()
     ipField = QLineEdit()
@@ -21,6 +24,8 @@ def display_form(window):
     passwordLabel = QLabel("mot de passe")
     createButton = QPushButton("créer")
     cancelButton = QPushButton("annuler")
+    labelSpinHoriz = QLabel("taille x :")
+    labelSpinVert = QLabel("taille y :")
 
     nameField.setFixedWidth(500)
     ipField.setFixedWidth(500)
@@ -34,12 +39,13 @@ def display_form(window):
 
     cancelButton.clicked.connect(partial(Widgets.loadSetup.load_setup, window))
     chooseButton.clicked.connect(partial(Widgets.loadSetup.load_from_combo, window, comboSetup))
-    createButton.clicked.connect(partial(create_setup, window, nameField, ipField, loginField, passwordField))
+    createButton.clicked.connect(partial(create_setup, window, nameField, ipField, loginField, passwordField, spinHoriz, spinVert))
 
     nameLayout = QHBoxLayout()
     ipLayout = QHBoxLayout()
     loginLayout = QHBoxLayout()
     passwordLayout = QHBoxLayout()
+    sizeLayout = QHBoxLayout()
     formLayout = QVBoxLayout()
     chooseLayout = QVBoxLayout()
     createLayout = QVBoxLayout()
@@ -50,10 +56,15 @@ def display_form(window):
     createLayout.addLayout(ipLayout)
     createLayout.addLayout(loginLayout)
     createLayout.addLayout(passwordLayout)
+    createLayout.addLayout(sizeLayout)
     chooseCreateLayout.addLayout(chooseLayout)
     chooseCreateLayout.addLayout(createLayout)
     formLayout.addLayout(chooseCreateLayout)
 
+    sizeLayout.addWidget(labelSpinHoriz)
+    sizeLayout.addWidget(spinHoriz)
+    sizeLayout.addWidget(labelSpinVert)
+    sizeLayout.addWidget(spinVert)
     nameLayout.addWidget(nameLabel)
     nameLayout.addWidget(nameField)
     ipLayout.addWidget(ipLabel)
@@ -69,14 +80,13 @@ def display_form(window):
     window.buttonLayout.addWidget(formScreen, 0, 0)
 
 
-def create_setup(window, nameField, ipField, loginField, passwordField):
+def create_setup(window, nameField, ipField, loginField, passwordField, spinHoriz, spinVert):
     try:
         os.makedirs(f"ressources/setups/{nameField.text()}/compiled")
         os.mkdir(f"ressources/setups/{nameField.text()}/uncompiled")
         with open(f"ressources/setups/{nameField.text()}/config.txt", "w") as file:
             file.write(f"{ipField.text()}|{loginField.text()}|{passwordField.text()}")
-        # with open(f"ressources/setups/{nameField.text()}/{nameField.text()}.txt", "w") as file:
-        #     pass
+        display_creation_widget(window, nameField.text(), spinHoriz.value(), spinVert.value())
 
     except FileExistsError:
         pass

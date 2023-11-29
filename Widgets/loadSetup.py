@@ -36,7 +36,15 @@ def load_setup(window=None, file=False):
     clear_setup(window)
     if not file:
         file = get_last_setup()
-    set_last_setup(file)
+        try:
+            with open(f"ressources\\setups\\{file}\\{file}.txt", "r") as f:
+                pass
+        except FileNotFoundError:
+            file = "default"
+    if file == "config":
+        set_last_setup("default")
+    else:
+        set_last_setup(file)
     setup = []
     with open(f"ressources\\setups\\{file}\\{file}.txt", "r") as f:
         line = f"foo"
