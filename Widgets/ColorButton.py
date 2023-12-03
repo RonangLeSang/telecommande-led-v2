@@ -24,9 +24,7 @@ class ColorButton(QFrame):
         self.isLocked = False
         self.isHovered = False
         self.color = "#000000"
-        self.setStyleSheet(f"background-color:white;\n"
-                           f"border-radius: 1px;"
-                           f"border: 1px solid black;")
+        self.setStyleSheet(f"background-color:white;")
 
     def color_your_button(self):
         self.isLocked = not self.isLocked

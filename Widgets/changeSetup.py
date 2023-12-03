@@ -5,10 +5,11 @@ from functools import partial
 
 from PySide6.QtWidgets import QWidget, QComboBox, QPushButton, QLineEdit, QLabel, QHBoxLayout, QVBoxLayout, QSpinBox
 
-from Widgets.CreateSetup import display_creation_widget
+from Widgets.CreateSetup import display_creation_widget, incapacitate_buttons
 
 
 def display_form(window):
+    incapacitate_buttons(window)
     formScreen = QWidget()
     comboSetup = QComboBox()
     spinHoriz = QSpinBox()

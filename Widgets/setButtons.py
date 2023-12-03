@@ -3,7 +3,14 @@ from functools import partial
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
 from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame, insert_animation
 from Widgets.ColorWidget import change_bg_sliders, change_bg_hex, change_bg_pantone
-from Widgets.loadSetup import choose_setup
+import Widgets.loadSetup
+
+
+def link_buttons(leds, window):
+    window.backButton.clicked.connect(partial(back_frame, leds, window))
+    window.nextButton.clicked.connect(partial(next_frame, leds, window))
+    window.saveButton.clicked.connect(partial(save, window.saveButton))
+    window.loadButton.clicked.connect(partial(load, window, window.loadButton, leds))
 
 
 def setup_window(window, leds):
@@ -36,11 +43,8 @@ def setup_window(window, leds):
     window.launchHyperyon.clicked.connect(launch_hyperion)
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
-    window.backButton.clicked.connect(partial(back_frame, leds, window))
-    window.nextButton.clicked.connect(partial(next_frame, leds, window))
-    window.saveButton.clicked.connect(partial(save, window.saveButton))
-    window.loadButton.clicked.connect(partial(load, window, window.loadButton, leds))
+    link_buttons(leds, window)
 
     window.suppressFrame.triggered.connect(partial(suppress_frame, window, leds))
     window.insertAnimation.triggered.connect(partial(insert_animation, window, leds))
-    window.changeID.triggered.connect(partial(choose_setup, window))
+    window.changeID.triggered.connect(partial(Widgets.loadSetup.choose_setup, window))

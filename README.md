@@ -6,18 +6,21 @@ Application de contrôle de LEDs via SSH avec choix de couleurs unis, création 
 - Les spinbox ne sont plus utilisables (dommage)
 
 # Les trucs à finir :
-- relier le bouton save de la création de setup à la sauvegarde (ez)
+- supprimer les fonctions des boutons quand on en a pas besoin
 
 # Les trucs à faire :
+- choisir l'ordre des leds
 - exporter la liste finie
 - vérifier la présence du programme sur la machine en face
 - choisir l'animation à afficher
 - synchroniser les stockages
 - modifier les infos machine
+- fonction de copie de frame
+- fade (bord orange)
 
 # Les trucs à améliorer :
 - l'interface à chier du choix de setup
 - changer la couleur du drop menu parce que là on le voit pas (à voir avec la couleur du fond)
 
 # Les trucs à changer :
-- Faut arrêter de changer la couleur du fond, ça rame du cul
+- Faut arrêter de changer la couleur du fond, ça rame du cul (tester la solution sur autre proc)
