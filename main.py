@@ -3,8 +3,10 @@ import sys
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtWidgets import QApplication
 
+from Memory.Pressed import set_connection_attempt
 from SSH.Connection import ConnectionAttempt
-from Widgets.loadSetup import load_setup
+from SSH.ID import get_id_from_file
+from Widgets.loadSetup import load_setup, get_last_setup
 from Widgets.setButtons import setup_window
 
 
@@ -20,12 +22,6 @@ def get_rgb():
 
 if __name__ == "__main__":
 
-    # déclaration des variables
-
-    ip_address = "192.168.1.53"
-    username = "pi"
-    password = "terrasnet"
-
     # fenêtre
 
     loader = QUiLoader()
@@ -34,8 +30,9 @@ if __name__ == "__main__":
         app = QApplication(sys.argv)
     window = loader.load("ressources\\UI\\fen.ui", None)
 
-    connectionAttempt = ConnectionAttempt(ip_address, username, password, window)
+    connectionAttempt = ConnectionAttempt(get_id_from_file(get_last_setup()), window)
     connectionAttempt.start()
+    set_connection_attempt(connectionAttempt)
 
     window.show()
 

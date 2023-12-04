@@ -1,5 +1,6 @@
 from functools import partial
 
+from Memory.Pressed import reset
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
 from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame, insert_animation
 from Widgets.ColorWidget import change_bg_sliders, change_bg_hex, change_bg_pantone
@@ -44,6 +45,7 @@ def setup_window(window, leds):
     window.quitHyperyon.clicked.connect(quit_hyperion)
 
     link_buttons(leds, window)
+    reset()
 
     window.suppressFrame.triggered.connect(partial(suppress_frame, window, leds))
     window.insertAnimation.triggered.connect(partial(insert_animation, window, leds))

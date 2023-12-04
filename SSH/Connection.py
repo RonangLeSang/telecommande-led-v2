@@ -11,19 +11,24 @@ class ConnectionAttempt(threading.Thread):
     Thread qui tente de se connecter au raspberry
     """
 
-    def __init__(self, ip_address, username, password, window):
+    def __init__(self, IDs, window):
         threading.Thread.__init__(self)
         self.isConnected = False
-        self.ip_address = ip_address
-        self.username = username
-        self.password = password
+        self.ip_address = IDs[0]
+        self.username = IDs[1]
+        self.password = IDs[2]
         self.window = window
+
+    def set_ids(self, IDs):
+        self.ip_address = IDs[0]
+        self.username = IDs[1]
+        self.password = IDs[2]
 
     def run(self):
         """
         Continue d'essayer de se connecter tant qu'il n'y arrive pas et marque de courtes pauses
         """
-        while not self.isConnected:
+        while not self.isConnected or self.ip_address != "0.0.0.0":
             connectionWait = ConnectionWait(self.window)
             connectionWait.start()
             if not connect(self.ip_address, self.username, self.password, connectionWait, self.window):

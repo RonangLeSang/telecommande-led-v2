@@ -3,9 +3,19 @@ global currentFrame
 global savedFrames
 global ssh_client
 global setup
+global connectionAttempt
 currentFrame = 0
 savedFrames = []
 isPressed = False
+
+
+def reset():
+    global currentFrame
+    global savedFrames
+    global isPressed
+    currentFrame = 0
+    savedFrames = []
+    isPressed = False
 
 
 def switch_is_pressed():
@@ -56,3 +66,18 @@ def set_setup(newSetup):
 def get_setup():
     global setup
     return setup
+
+
+def set_connection_attempt(newConnectionAttempt):
+    global connectionAttempt
+    connectionAttempt = newConnectionAttempt
+
+
+def start_connection_attempt():
+    global connectionAttempt
+    connectionAttempt.start()
+
+
+def set_ids_connection(IDs):
+    global connectionAttempt
+    connectionAttempt.set_ids(IDs)

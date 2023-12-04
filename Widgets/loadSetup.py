@@ -1,6 +1,9 @@
-from Memory.Pressed import set_setup
+import Widgets
+from Memory.Pressed import set_setup, set_ids_connection, reset
+from SSH.ID import get_id_from_file
 from Widgets.ColorButton import ColorButton
 from Widgets.changeSetup import display_form
+from Widgets.setButtons import link_buttons
 
 
 def get_position(setup):
@@ -37,7 +40,7 @@ def load_setup(window=None, file=False):
     if not file:
         file = get_last_setup()
         try:
-            with open(f"ressources\\setups\\{file}\\{file}.txt", "r") as f:
+            with open(f"ressources\\setups\\{file}\\{file}.txt", "r") as _:
                 pass
         except FileNotFoundError:
             file = "default"
@@ -60,7 +63,10 @@ def clear_setup(window):
 
 
 def load_from_combo(window, combo):
-    load_setup(window, combo.currentText())
+    leds = load_setup(window, combo.currentText())
+    set_ids_connection(get_id_from_file(get_last_setup()))
+    link_buttons(leds, window)
+    reset()
 
 
 def choose_setup(window):

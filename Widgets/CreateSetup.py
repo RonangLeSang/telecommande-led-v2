@@ -1,6 +1,7 @@
 from functools import partial
 
 import Widgets.loadSetup
+from Memory.Pressed import reset
 from Widgets.setButtons import link_buttons
 
 
@@ -46,6 +47,7 @@ def save_buttons(name, grid, configurator, window):
 
     leds = Widgets.loadSetup.load_setup(window, name)
     link_buttons(leds, window)
+    reset()
 
 
 def save_setup(window, name, grid, configurator):
@@ -54,8 +56,11 @@ def save_setup(window, name, grid, configurator):
 
 def incapacitate_buttons(window):
     buttons = [window.backButton, window.nextButton, window.saveButton, window.loadButton]
-    for button in buttons:
-        button.clicked.disconnect()
+    try:
+        for button in buttons:
+            button.clicked.disconnect()
+    except:
+        pass
 
 
 def display_creation_widget(window, name, sizeX, sizeY):
