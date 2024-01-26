@@ -6,6 +6,9 @@ from Colors.conversions import rgb_to_hex
 
 
 def press():
+    """
+    Définit l'état du curseur (écrit ou non)
+    """
     switch_is_pressed()
     if get_is_pressed():
         QApplication.setOverrideCursor(Qt.CrossCursor)
@@ -27,6 +30,9 @@ class ColorButton(QFrame):
         self.setStyleSheet(f"background-color:white;")
 
     def color_your_button(self):
+        """
+        Colore le bouton s'il n'est pas verrouillé en la couleur des sliders, sinon, on le met en blanc et le déverrouille
+        """
         self.isLocked = not self.isLocked
         if self.isLocked:
             self.setStyleSheet(f"background-color : rgb({self.sliderR.value()},{self.sliderG.value()},"
@@ -40,6 +46,9 @@ class ColorButton(QFrame):
                                f"border: 1px solid black;")
 
     def mousePressEvent(self, event):
+        """
+        Evénement pendant lequel on clique sur le bouton
+        """
         if event.button() == Qt.LeftButton and not self.isHovered:
             press()
             self.color_your_button()
@@ -48,10 +57,16 @@ class ColorButton(QFrame):
             press()
 
     def enterEvent(self, event):
+        """
+        Evénement pendant lequel on entre sur le bouton
+        """
         if get_is_pressed():
             self.isHovered = True
             self.color_your_button()
 
     def leaveEvent(self, event):
+        """
+        Evénement pendant lequel on sort du bouton
+        """
         if get_is_pressed():
             self.isHovered = False

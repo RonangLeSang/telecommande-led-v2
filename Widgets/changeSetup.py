@@ -9,6 +9,9 @@ from Widgets.CreateSetup import display_creation_widget, incapacitate_buttons
 
 
 def display_form(window):
+    """
+    Affiche le formulaire de séléction et création de setup
+    """
     incapacitate_buttons(window)
     formScreen = QWidget()
     comboSetup = QComboBox()
@@ -82,6 +85,9 @@ def display_form(window):
 
 
 def create_setup(window, nameField, ipField, loginField, passwordField, spinHoriz, spinVert):
+    """
+    Lance la création de sétups à partir du formulaire
+    """
     try:
         os.makedirs(f"ressources/setups/{nameField.text()}/compiled")
         os.mkdir(f"ressources/setups/{nameField.text()}/uncompiled")

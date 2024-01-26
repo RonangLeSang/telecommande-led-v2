@@ -7,12 +7,18 @@ from Colors.conversions import rgb_to_hex, hex_to_rgb
 
 
 def indicate_page(window, savedFrames, currentFrame):
+    """
+    Affiche l'index de la page courante sur le nombre de pages totales
+    """
     window.pageIndicator.setText(f"frame : {currentFrame + 1}/{len(savedFrames) + 1}")
     set_saved_frames(savedFrames)
     set_current_frame(currentFrame)
 
 
 def clean_boxes(leds):
+    """
+    Met toutes les cases en blanc
+    """
     for i in range(0, len(leds)):
         if leds[i].isLocked:
             leds[i].color_your_button()
@@ -105,6 +111,9 @@ def modif_frame(leds, savedFrames, indice, window):
 
 
 def display_frame(leds):
+    """
+    Affiche la couleur des leds selon la liste "leds"
+    """
     if leds[0].color != "anim":
         for led in leds:
             ledColor = hex_to_rgb(led.color)
@@ -117,6 +126,9 @@ def display_frame(leds):
 
 
 def display_anim(leds):
+    """
+    Affiche une bordure verte autour de toutes les cases (représente une information)
+    """
     for led in leds:
         led.setStyleSheet(f"border-radius: 3px;"
                           f"border: 2px solid green;"
@@ -125,6 +137,9 @@ def display_anim(leds):
 
 
 def load_frame(frame, leds, window):
+    """
+    Charge une frame ou une animation sur l'affichage
+    """
     if frame[0] != -1:
         window.timeChoose.setValue(frame[0])
         for i in range(0, len(leds)):
@@ -152,6 +167,9 @@ def load(window, loadButton, leds):
 
 
 def suppress_frame(window, leds):
+    """
+    Supprime une frame de l'affichage et de la sauvegarde et retourne une frame en arrière
+    """
     savedFrames = get_saved_frames()
     currentFrame = get_current_frame()
     try:
@@ -167,6 +185,9 @@ def suppress_frame(window, leds):
 
 
 def insert_animation(window, leds):
+    """
+    Permet de choisir et d'insérer une animation
+    """
     try:
         fileName = QFileDialog.getOpenFileName(None, "Load animation", f"ressources\\setups\\{get_setup()}\\uncompiled",
                                                "Json Files (*.json)")

@@ -10,6 +10,9 @@ isPressed = False
 
 
 def reset():
+    """
+    Remet à zéro toute les variables permettant de suivre l'affichage
+    """
     global currentFrame
     global savedFrames
     global isPressed

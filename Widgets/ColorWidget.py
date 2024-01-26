@@ -32,10 +32,10 @@ def change_bg_hex(window, yo):
     Change la couleur de fond et des labels en fonction de la valeur hexadécimale rentrée par l'utilisateur
     """
     if len(window.editHexa.text()) == 7:
-        hex = hex_to_rgb(window.editHexa.text())
-        window.sliderRed.setValue(hex[0])
-        window.sliderGreen.setValue(hex[1])
-        window.sliderBlue.setValue(hex[2])
+        rgb = hex_to_rgb(window.editHexa.text())
+        window.sliderRed.setValue(rgb[0])
+        window.sliderGreen.setValue(rgb[1])
+        window.sliderBlue.setValue(rgb[2])
 
 
 def change_bg_pantone(window):

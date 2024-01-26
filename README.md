@@ -1,9 +1,9 @@
 # telecommande-led-v2
 
-Application de contrôle de LEDs via SSH avec choix de couleurs unis, création et envoi d'animations, et adaptation à (quasiment) tous les supports.
+Application de contrôle de LEDs via SSH avec choix de couleurs unis, création et envoi d'animations, et adaptation à (quasiment) tous les supports (tant qu'il ya python et un support SSH).
 
 # Les trucs à réparer :
-- Les spinbox ne sont plus utilisables (dommage)
+- rieng
 
 # Les trucs à finir :
 - supprimer les fonctions des boutons quand on en a pas besoin
@@ -19,6 +19,8 @@ Application de contrôle de LEDs via SSH avec choix de couleurs unis, création 
 - fonction de copie de frame
 - fade (bord orange)
 - ajouter une touche pour switcher le mode d'édition
+- supprimer des setups
+- Ctr + A, Ctr + Z, Ctr + Y
 
 # Les trucs à améliorer :
 - l'interface à chier du choix de setup

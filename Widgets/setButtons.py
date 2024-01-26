@@ -3,11 +3,14 @@ from functools import partial
 from Memory.Pressed import reset
 from SSH.SSHCommands import launch_color, launch_hyperion, quit_hyperion
 from Widgets.Animations import back_frame, next_frame, save, load, suppress_frame, insert_animation
-from Widgets.ColorWidget import change_bg_sliders, change_bg_hex, change_bg_pantone
+from Widgets.ColorWidget import change_bg_sliders, change_bg_hex, change_bg_pantone, change_bg_spinbox
 import Widgets.loadSetup
 
 
 def link_buttons(leds, window):
+    """
+    Relie les boutons à leurs fonctions
+    """
     window.backButton.clicked.connect(partial(back_frame, leds, window))
     window.nextButton.clicked.connect(partial(next_frame, leds, window))
     window.saveButton.clicked.connect(partial(save, window.saveButton))
@@ -15,6 +18,9 @@ def link_buttons(leds, window):
 
 
 def setup_window(window, leds):
+    """
+    Affiche la fenêtre de base de l'application
+    """
     window.setStyleSheet(f"background-color : black")
 
     window.sliderRed.setMaximum(255)
@@ -32,7 +38,7 @@ def setup_window(window, leds):
     window.valGreen.setMaximum(255)
     window.valBlue.setMaximum(255)
 
-    changeSpin = partial(change_bg_sliders, window)
+    changeSpin = partial(change_bg_spinbox, window)
 
     window.valRed.valueChanged.connect(changeSpin)
     window.valGreen.valueChanged.connect(changeSpin)
