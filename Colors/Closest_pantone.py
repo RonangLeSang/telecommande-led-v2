@@ -14,7 +14,6 @@ class ClosestPantone(threading.Thread):
     def run(self):
         """
         Renvoi le code pantone le plus proche du tuple rgb en paramètre à l'aide d'un dictionnaire
-        :param rgb: tuple
         :return rep: str code Pantone
         """
         with open("ressources/colors/results.json", "r") as file:

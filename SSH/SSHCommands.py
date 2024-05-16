@@ -8,12 +8,12 @@ def launch_color(window):
     quit_hyperion()
     ssh_client = get_ssh_client()
     chaine = f"echo {window.valRed.value()}l>/home/pi/coucou.txt"
-    stdin, stdout, stderr = ssh_client.exec_command(chaine)
+    ssh_client.exec_command(chaine)
     chaine = f"echo {window.valGreen.value()}l>>/home/pi/coucou.txt"
-    stdin, stdout, stderr = ssh_client.exec_command(chaine)
+    ssh_client.exec_command(chaine)
     chaine = f"echo {window.valBlue.value()}l>>/home/pi/coucou.txt"
-    stdin, stdout, stderr = ssh_client.exec_command(chaine)
-    stdin, stdout, stderr = ssh_client.exec_command("python3 /home/pi/hue.py")
+    ssh_client.exec_command(chaine)
+    ssh_client.exec_command("python3 /home/pi/hue.py")
 
 
 def launch_hyperion():
@@ -21,7 +21,7 @@ def launch_hyperion():
     Lance Hyperion par SSH
     """
     ssh_client = get_ssh_client()
-    stdin, stdout, stderr = ssh_client.exec_command("/usr/bin/hyperiond")
+    ssh_client.exec_command("/usr/bin/hyperiond")
 
 
 def quit_hyperion():
@@ -29,4 +29,4 @@ def quit_hyperion():
     Quitte Hyperion par SSH
     """
     ssh_client = get_ssh_client()
-    stdin, stdout, stderr = ssh_client.exec_command("killall hyperiond")
+    ssh_client.exec_command("killall hyperiond")

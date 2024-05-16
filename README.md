@@ -1,6 +1,6 @@
 # telecommande-led-v2
 
-Application de contrôle de LEDs via SSH avec choix de couleurs unis, création et envoi d'animations, et adaptation à (quasiment) tous les supports (tant qu'il ya python et un support SSH).
+Application de contrôle de LEDs via SSH avec choix de couleurs unis, création et envoi d'animations, et adaptation à (quasiment) tous les supports (tant qu'il y a python et un support SSH).
 
 # Les trucs à réparer :
 - rieng
@@ -26,6 +26,7 @@ Application de contrôle de LEDs via SSH avec choix de couleurs unis, création 
 - l'interface à chier du choix de setup
 - changer la couleur du drop menu parce que là on le voit pas (à voir avec la couleur du fond)
 - changer la forme des boutons
+- réduire le temps d'extinction
 
 # Les trucs à changer :
 - Faut arrêter de changer la couleur du fond, ça rame du cul (tester la solution sur autre proc)

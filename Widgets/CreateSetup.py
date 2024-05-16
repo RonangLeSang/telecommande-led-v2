@@ -68,9 +68,9 @@ def save_buttons(name, grid, configurator, window):
     reset()
 
 
-def save_setup(window, name, grid, configurator):
+def setup_save_button(window, name, grid, configurator):
     """
-    Sauvegarde le sétup avec la configuration des boutons et les identifiants
+    Connecte le bouton save à la sauvegarde du setup avec la configuration des boutons et les identifiants
     """
     window.saveButton.clicked.connect(partial(save_buttons, name, grid, configurator, window))
 
@@ -94,4 +94,4 @@ def display_creation_widget(window, name, sizeX, sizeY):
     configurator = generate_config(sizeY, sizeX)
     save_config(name, configurator)
     grid = Widgets.loadSetup.load_setup(window, name)
-    save_setup(window, name, grid, configurator)
+    setup_save_button(window, name, grid, configurator)

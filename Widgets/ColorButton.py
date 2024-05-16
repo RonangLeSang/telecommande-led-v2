@@ -31,7 +31,8 @@ class ColorButton(QFrame):
 
     def color_your_button(self):
         """
-        Colore le bouton s'il n'est pas verrouillé en la couleur des sliders, sinon, on le met en blanc et le déverrouille
+        Colore le bouton s'il n'est pas verrouillé en la couleur des sliders, sinon, on le met en blanc et le
+        déverrouille
         """
         self.isLocked = not self.isLocked
         if self.isLocked:

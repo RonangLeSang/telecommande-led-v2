@@ -84,7 +84,7 @@ def save(saveButton):
         pass
 
 
-def save_frame(leds, save, window):
+def save_frame(leds, saved_frame, window):
     """
     Sauvegarde une frame d'animation
     """
@@ -93,14 +93,12 @@ def save_frame(leds, save, window):
         if not led.isLocked:
             led.color = rgb_to_hex(window.sliderRed.value(), window.sliderGreen.value(), window.sliderBlue.value())
         frame.append(led.color)
-    save.append(frame)
+    saved_frame.append(frame)
 
 
 def modif_frame(leds, savedFrames, indice, window):
     """
     modifie une frame
-    :param leds:
-    :param indice:
     """
     frame = [window.timeChoose.value()]
     for led in leds:

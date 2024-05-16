@@ -1,7 +1,7 @@
 import json
 
 
-def rgb_to_hex(r : int, g : int, b : int):
+def rgb_to_hex(r: int, g: int, b: int):
     """
     Renvoi un code hexadécimal à partir d'un code RGB sous le format # 00 00 00
     :param r: int
@@ -12,16 +12,16 @@ def rgb_to_hex(r : int, g : int, b : int):
     return "#{:02x}{:02x}{:02x}".format(r, g, b)
 
 
-def hex_to_rgb(hex : hex):
+def hex_to_rgb(hex_num: hex):
     """
     À partir d'un code hexadecimal sous format # 00 00 00, retourne un tuple rgb
-    :param hex: hexa
+    :param hex_num: hexa
     :return (rgb): tuple RGB
     """
-    hex = hex[1:]
+    hex_num = hex_num[1:]
     rgb = []
     for i in (0, 2, 4):
-        decimal = int(hex[i:i + 2], 16)
+        decimal = int(hex_num[i:i + 2], 16)
         rgb.append(decimal)
     return tuple(rgb)
 
