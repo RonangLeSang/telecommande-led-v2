@@ -3,7 +3,7 @@
 Application de contrôle de LEDs via SSH avec choix de couleurs unis, création et envoi d'animations, et adaptation à (quasiment) tous les supports (tant qu'il y a python et un support SSH).
 
 # Les trucs à réparer :
-- rieng
+- quand on change la couleur de fond, le programme n'est pas thread safe
 
 # Les trucs à finir :
 - supprimer les fonctions des boutons quand on en a pas besoin
@@ -29,4 +29,4 @@ Application de contrôle de LEDs via SSH avec choix de couleurs unis, création 
 - réduire le temps d'extinction
 
 # Les trucs à changer :
-- Faut arrêter de changer la couleur du fond, ça rame du cul (tester la solution sur autre proc)
+- rien
